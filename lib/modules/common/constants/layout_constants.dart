@@ -23,7 +23,10 @@ class LayoutConstants {
   static final border = Border.all(
     width: 1,
     color: PaletteColor.grey,
-  ); //size object
+  );
+  //size object
   static const double appBarSize = 45;
   static const double btnHeight = 50;
+  static const double itemlistHeight = 70;
+  static const double circleIconSize = 50;
 }

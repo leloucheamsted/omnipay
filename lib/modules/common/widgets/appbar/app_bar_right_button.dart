@@ -52,7 +52,7 @@ class AppBarRightButton extends StatelessWidget {
         decoration: BoxDecoration(
             color: PaletteColor.white,
             borderRadius: BorderRadius.circular(LayoutConstants.radiusM),
-            boxShadow: <BoxShadow>[
+            boxShadow: const <BoxShadow>[
               BoxShadow(
                   color: Colors.white12,
                   blurRadius: 15.0,

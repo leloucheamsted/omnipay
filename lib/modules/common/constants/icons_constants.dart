@@ -1,5 +1,7 @@
 class IconsConstants {
   static const String activityIcon = 'assets/icons/activity.svg';
+  static const String transfertIcon = 'assets/icons/minimize-2.svg';
+
   static const String arrowleftIcon = 'assets/icons/arrow-left.svg';
   static const String cameroonIcon = 'assets/icons/cameroon.svg';
   static const String cardIcon = 'assets/icons/cardicon.svg';
@@ -21,4 +23,5 @@ class IconsConstants {
   static const String rateIcon = 'assets/icons/rate.svg';
   static const String settingsIcon = 'assets/icons/settings.svg';
   static const String userIcon = 'assets/icons/user.svg';
+  static const String cloudIcon = 'assets/icons/cloud.svg';
 }

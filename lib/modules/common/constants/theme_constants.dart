@@ -4,7 +4,7 @@ import 'package:omnipay/modules/common/constants/constants.dart';
 
 class ThemeConstants {
   static final theme = ThemeData(
-    backgroundColor: PaletteColor.greyLight,
+    backgroundColor: PaletteColor.primary,
     primaryColor: PaletteColor.primary,
     fontFamily: 'Georgia',
     scaffoldBackgroundColor: PaletteColor.greyLight,

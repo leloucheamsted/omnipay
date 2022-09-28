@@ -3,11 +3,11 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:omnipay/modules/common/constants/layout_constants.dart';
 
-class AbstractButtn extends StatelessWidget {
+class ReloadButton extends StatelessWidget {
   final Color background;
   final Widget widget;
   final double? width;
-  const AbstractButtn(
+  const ReloadButton(
       {super.key, required this.background, required this.widget, this.width});
 
   @override
