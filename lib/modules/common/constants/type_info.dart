@@ -1,0 +1,4 @@
+enum TypeInfo {
+  error,
+  message,
+}
