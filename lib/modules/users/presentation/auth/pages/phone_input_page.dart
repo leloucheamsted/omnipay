@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:omnipay/modules/card/pages/ui/action_button_card.dart';
 import 'package:omnipay/modules/card/pages/ui/card_creation.dart';
+import 'package:omnipay/modules/card/pages/ui/card_details.dart';
 import 'package:omnipay/modules/card/pages/ui/cost_card.dart';
+import 'package:omnipay/modules/card/pages/ui/credit_card.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widget.dart';
 import 'package:omnipay/modules/common/widgets/textfield/text_field_container.dart';
@@ -10,6 +13,8 @@ import 'package:omnipay/modules/common/widgets/textfield/ui/info_widget.dart';
 import 'package:omnipay/modules/common/widgets/bottomsheet/choice_amount.dart';
 import 'package:omnipay/modules/home/pages/ui/balance_controller.dart';
 import 'package:omnipay/modules/notification/ui/alert_bottom_popup.dart';
+import 'package:omnipay/modules/profile/pages/ui/logout.dart';
+import 'package:omnipay/modules/profile/pages/ui/settings_item.dart';
 import 'package:omnipay/modules/users/presentation/auth/pages/ui/input_number.dart';
 import 'package:omnipay/modules/users/presentation/auth/pages/ui/input_otp.dart';
 
@@ -30,7 +35,7 @@ class PhoneInputPage extends StatelessWidget {
             LayoutConstants.paddingM,
             LayoutConstants.paddingM),
         child: Column(
-          children: const [
+          children: [
             BodyText1(
                 content:
                     'The phone number you provide will be used to create your account only.',
@@ -38,7 +43,22 @@ class PhoneInputPage extends StatelessWidget {
             SizedBox(
               height: LayoutConstants.spaceXL,
             ),
-            CostCardWidget()
+            CreditCard(),
+            SizedBox(
+              height: LayoutConstants.spaceXL,
+            ),
+            SettingsItem(),
+            SizedBox(
+              height: LayoutConstants.spaceXL,
+            ),
+            Logout(),
+            SizedBox(
+              height: LayoutConstants.spaceXL,
+            ),
+            ContinuButton(event: () {}, widget: Text('data'))
+
+            /// ActionButtonCard(),
+            //CardDetails()
             // Expanded(
             //   child: Column(
             //     children: [

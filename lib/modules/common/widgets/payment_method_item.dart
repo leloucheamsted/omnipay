@@ -40,6 +40,10 @@ class PaymentMethodItem extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  SvgPicture.asset(
+                    ImagesConstants.mtnImage,
+                    height: 30,
+                  ),
                   Container(
                     height: 50,
                     width: 50,

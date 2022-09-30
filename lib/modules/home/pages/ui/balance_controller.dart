@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../common/constants/constants.dart';
@@ -128,7 +126,22 @@ class BalanceController extends StatelessWidget {
   Widget _buttonaction(double width) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [_reloadButton(width), _transfertButton(width)],
+      children: [
+        IconCustomButton(
+          background: PaletteColor.primary,
+          textColor: PaletteColor.white,
+          content: 'Reload',
+          width: width,
+          icon: IconsConstants.plusIcon,
+        ),
+        IconCustomButton(
+          content: 'Transfer',
+          background: PaletteColor.primary,
+          textColor: PaletteColor.white,
+          width: width,
+          icon: IconsConstants.transfertIcon,
+        )
+      ],
     );
   }
 }

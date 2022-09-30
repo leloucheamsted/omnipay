@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:omnipay/modules/common/constants/palette_color.dart';
 import 'package:omnipay/modules/common/constants/theme_constants.dart';
+import 'package:omnipay/modules/users/presentation/auth/pages/otp_page.dart';
 import 'package:omnipay/modules/users/presentation/auth/pages/phone_input_page.dart';
 
 void main() {
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeConstants.theme,
-      home: const PhoneInputPage(),
+      home: const OtpPage(),
     );
   }
 }

@@ -91,7 +91,26 @@ class SubTitle2 extends StatelessWidget {
         color: color,
         fontFamily: FontsFamilyConstants.fontRegular,
         fontWeight: FontWeight.w400,
-        fontSize: FontsSizeConstants.subtitle2,
+        fontSize: FontsSizeConstants.title3,
+      ),
+    );
+  }
+}
+
+class SubTitle4 extends StatelessWidget {
+  final String content;
+  final Color color;
+  const SubTitle4({super.key, required this.content, required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      content,
+      style: TextStyle(
+        color: color,
+        fontFamily: FontsFamilyConstants.fontRegular,
+        fontWeight: FontWeight.w400,
+        fontSize: FontsSizeConstants.subtitle1,
       ),
     );
   }
