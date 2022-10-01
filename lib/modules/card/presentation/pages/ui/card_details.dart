@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:omnipay/modules/common/widgets/typography/typo.widget.dart';
 
-import '../../../common/constants/constants.dart';
+import '../../../../common/constants/constants.dart';
 
 class CardDetails extends StatelessWidget {
   const CardDetails({super.key});

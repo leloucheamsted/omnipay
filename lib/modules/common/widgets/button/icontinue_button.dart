@@ -7,6 +7,6 @@ class IContinueButton extends AbstractButtn {
     super.key,
     required super.widget,
   }) : super(
-          background: PaletteColor.primary,
+          background: Colors.transparent,
         );
 }

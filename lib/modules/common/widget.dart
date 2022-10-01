@@ -11,3 +11,5 @@ export 'widgets/bottomsheet/bottomsheet_header.dart';
 export 'widgets/button/reload_button.dart';
 export 'widgets/button/transfer_button.dart';
 export 'widgets/button/icon_custom_button.dart';
+export 'widgets/button/width_button.dart';
+export 'widgets/button/activenotif_button.dart';

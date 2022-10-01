@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:omnipay/modules/card/pages/ui/circle_icon.dart';
+import 'package:omnipay/modules/card/presentation/pages/ui/circle_icon.dart';
 import 'package:omnipay/modules/common/widget.dart';
 
-import '../../../common/constants/constants.dart';
+import '../../../../common/constants/constants.dart';
 
 class CostCardWidget extends StatelessWidget {
   const CostCardWidget({super.key});

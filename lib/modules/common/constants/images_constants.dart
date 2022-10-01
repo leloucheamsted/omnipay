@@ -6,8 +6,8 @@ class ImagesConstants {
   static const String dialImage = 'assets/images/dial.svg';
   static const String mastercardImage = 'assets/images/mastercard.svg';
   static const String mtnImage = 'assets/images/mtn momo.png';
-  static const String notificationImage = 'assets/images/notification.svg';
+  static const String notificationImage = 'assets/images/cloche.png';
   static const String orangeImage = 'assets/images/orange money.svg';
-  static const String policyImage = 'assets/images/policykey.svg';
+  static const String policyImage = 'assets/images/policy.png';
   static const String loadinggif = 'assets/icons/giphy.gif';
 }

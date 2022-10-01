@@ -119,12 +119,15 @@ class SubTitle4 extends StatelessWidget {
 class BodyText1 extends StatelessWidget {
   final String content;
   final Color color;
-  const BodyText1({super.key, required this.content, required this.color});
+  final TextAlign? textAlign;
+  const BodyText1(
+      {super.key, required this.content, required this.color, this.textAlign});
 
   @override
   Widget build(BuildContext context) {
     return Text(
       content,
+      textAlign: textAlign,
       style: TextStyle(
         color: color,
         fontFamily: FontsFamilyConstants.fontRegular,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../common/constants/constants.dart';
-import '../../../common/widget.dart';
+import '../../../../common/constants/constants.dart';
+import '../../../../common/widget.dart';
 
 class BalanceController extends StatelessWidget {
   BalanceController({

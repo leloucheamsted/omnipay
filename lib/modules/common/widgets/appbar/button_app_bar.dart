@@ -15,19 +15,19 @@ class ButtonAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.bottomLeft,
-      height: LayoutConstants.appBarSize * 2,
+      height: LayoutConstants.appBarSize * 1.4,
       color: PaletteColor.greyLight,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(
             LayoutConstants.paddingM,
             LayoutConstants.paddingS,
             LayoutConstants.paddingM,
-            LayoutConstants.paddingM),
+            LayoutConstants.paddingZero),
         child: InkWell(
           onTap: backEvent,
           child: Container(
-            height: 30,
-            width: 30,
+            height: 25,
+            width: 25,
             child: SvgPicture.asset(IconsConstants.arrowleftIcon),
           ),
         ),

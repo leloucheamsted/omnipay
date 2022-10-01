@@ -10,7 +10,7 @@ class BlanckAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: LayoutConstants.appBarSize,
+      height: LayoutConstants.appBarSize * 2,
       color: PaletteColor.greyLight,
     );
   }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:omnipay/modules/card/pages/ui/circle_icon.dart';
+import 'package:omnipay/modules/card/presentation/pages/ui/circle_icon.dart';
 import 'package:omnipay/modules/common/widget.dart';
 
-import '../../../common/constants/constants.dart';
+import '../../../../common/constants/constants.dart';
 
 class CardCreation extends StatelessWidget {
   const CardCreation({

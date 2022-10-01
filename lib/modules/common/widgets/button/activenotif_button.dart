@@ -7,16 +7,17 @@ import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widgets/button/icontinue_button.dart';
 import 'package:omnipay/modules/common/widgets/button/ihelp_button.dart';
 
-class ContinuButton extends StatefulWidget {
+class ActiveNotifButton extends StatefulWidget {
   final VoidCallback event;
   final Widget widget;
-  const ContinuButton({super.key, required this.event, required this.widget});
+  const ActiveNotifButton(
+      {super.key, required this.event, required this.widget});
 
   @override
-  State<ContinuButton> createState() => _ContinuButtonState();
+  State<ActiveNotifButton> createState() => _ActiveNotifButtonState();
 }
 
-class _ContinuButtonState extends State<ContinuButton>
+class _ActiveNotifButtonState extends State<ActiveNotifButton>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
 
@@ -44,7 +45,7 @@ class _ContinuButtonState extends State<ContinuButton>
               widget:
                   //;
                   Text(
-                'Continue',
+                'Activate push notifications.',
                 style: TextStyle(
                   color: PaletteColor.white,
                   fontFamily: FontsFamilyConstants.fontRegular,

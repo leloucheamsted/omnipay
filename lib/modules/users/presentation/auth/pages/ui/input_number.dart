@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widgets/typography/typo.widget.dart';
+import 'package:omnipay/modules/users/presentation/auth/bloc/auth_bloc.dart';
+import 'package:provider/provider.dart';
 
 class InputNumber extends StatefulWidget {
   const InputNumber({super.key});
@@ -16,21 +16,43 @@ class InputNumber extends StatefulWidget {
 class _InputNumberState extends State<InputNumber> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: LayoutConstants.btnHeight,
-      decoration: BoxDecoration(
-        border: LayoutConstants.border,
-        borderRadius: BorderRadius.circular(LayoutConstants.radiusS),
-      ),
-      child: Row(
-        children: [
-          _choiceContryCode(),
-          const VerticalDivider(
-            thickness: 2,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Container(
+          height: LayoutConstants.btnHeight,
+          decoration: BoxDecoration(
+            //  border: LayoutConstants.border,
+            border: Border.all(
+              width: 1,
+              color: context.watch<AuthBloc>().isValidNumber == false
+                  ? PaletteColor.danger
+                  : PaletteColor.grey,
+            ),
+            borderRadius: BorderRadius.circular(LayoutConstants.radiusS),
           ),
-          Expanded(child: _buildPhoneInputFiled()),
-        ],
-      ),
+          child: Row(
+            children: [
+              _choiceContryCode(),
+              const VerticalDivider(
+                thickness: 2,
+              ),
+              Expanded(child: _buildPhoneInputFiled()),
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: LayoutConstants.spaceS,
+        ),
+        SizedBox(
+          child: context.watch<AuthBloc>().isValidNumber == false
+              ? const ErrorText(
+                  content: 'Enter a valid phone number',
+                  color: PaletteColor.danger)
+              : null,
+        )
+      ],
     );
   }
 
@@ -55,7 +77,9 @@ class _InputNumberState extends State<InputNumber> {
     return TextField(
       autofocus: true,
       // controller: _phoneTxtCtrl,
-      //onChanged: bloc.changePhone,
+      onChanged: ((value) {
+        context.watch<AuthBloc>().setPhoneNumber = value;
+      }),
       keyboardType: TextInputType.number,
       textAlign: TextAlign.left,
       inputFormatters: <TextInputFormatter>[

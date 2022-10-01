@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../common/constants/constants.dart';
+import '../../../../common/constants/constants.dart';
 
 class CircleIcon extends StatelessWidget {
   final double size;

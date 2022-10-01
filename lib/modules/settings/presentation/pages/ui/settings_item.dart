@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:omnipay/modules/card/pages/ui/circle_icon.dart';
+import 'package:omnipay/modules/card/presentation/pages/ui/circle_icon.dart';
 import 'package:omnipay/modules/common/widget.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
-import '../../../common/constants/constants.dart';
+import '../../../../common/constants/constants.dart';
 
 class SettingsItem extends StatelessWidget {
   const SettingsItem({super.key});
