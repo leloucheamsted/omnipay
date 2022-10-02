@@ -12,6 +12,7 @@ class TextFielContainer extends StatefulWidget {
   final TypeInfo typeInfo;
   final Widget infoWidget;
   final Widget child;
+  final Widget? messageWidget;
   const TextFielContainer({
     super.key,
     this.width,
@@ -21,6 +22,7 @@ class TextFielContainer extends StatefulWidget {
     required this.child,
     required this.typeInfo,
     required this.infoWidget,
+    this.messageWidget,
   });
 
   @override
@@ -50,6 +52,11 @@ class _TextFielContainerState extends State<TextFielContainer> {
         ),
         const SizedBox(
           height: LayoutConstants.spaceS,
+        ),
+        SizedBox(
+          child: widget.messageWidget != null && widget.showchild == false
+              ? widget.messageWidget
+              : null,
         ),
         SizedBox(child: widget.showchild == true ? widget.infoWidget : null)
       ],

@@ -6,7 +6,7 @@ import 'package:omnipay/modules/common/constants/icons_constants.dart';
 import 'package:omnipay/modules/common/constants/palette_color.dart';
 import 'package:omnipay/modules/common/widget.dart';
 
-import '../../constants/constants.dart';
+import '../../../../../common/constants/constants.dart';
 
 class BottomSheetHeader extends StatelessWidget {
   final VoidCallback onClose;

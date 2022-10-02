@@ -15,22 +15,22 @@ class ChoiceAmount extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        _amountWidget(),
-        _amountWidget(),
-        _amountWidget(),
+        _amountWidget('5,000'),
+        _amountWidget('10,000'),
+        _amountWidget('15,000'),
       ],
     );
   }
 
-  Widget _amountWidget() {
+  Widget _amountWidget(String amount) {
     return Container(
       alignment: Alignment.center,
       height: LayoutConstants.btnHeight,
       width: width,
       decoration: BoxDecoration(
-          color: PaletteColor.white, // ORIGINAL COLOR IS GRAYLIGHT
+          color: PaletteColor.greyLight, // ORIGINAL COLOR IS GRAYLIGHT
           borderRadius: BorderRadius.circular(LayoutConstants.radiusS)),
-      child: BodyText1(content: '124', color: PaletteColor.dark),
+      child: BodyText2(content: 'FCFA $amount', color: PaletteColor.dark),
     );
   }
 }

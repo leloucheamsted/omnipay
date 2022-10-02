@@ -1,8 +1,13 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:omnipay/modules/card/bloc/cards_bloc.dart';
 import 'package:omnipay/modules/common/widget.dart';
+import 'package:blur/blur.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../common/constants/constants.dart';
 
@@ -35,59 +40,81 @@ class _CreditCardState extends State<CreditCard> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _amountWidget(),
+              _amountWidget(context),
               const SizedBox(
                 height: 40,
               ),
-              _infoWidget(),
+              _infoWidget(context),
               const SizedBox(
                 height: 40,
               ),
-              _footerWidget(),
+              _footerWidget(context),
             ],
           ),
         ));
   }
 
-  Widget _amountWidget() {
+  Widget _amountWidget(context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         // amount
-        Row(
-          children: const [
-            SubTitle4(content: 'FCFA', color: PaletteColor.white),
-            SizedBox(
-              width: LayoutConstants.spaceS,
-            ),
-            SubTitle4(content: '20,000', color: PaletteColor.white)
-          ],
+
+        Blur(
+          colorOpacity: 0,
+          blur: Provider.of<CardsBloc>(context, listen: true).isBlock == true
+              ? 5
+              : 0,
+          blurColor: Theme.of(context).primaryColor,
+          child: Row(
+            children: const [
+              SubTitle4(content: 'FCFA', color: PaletteColor.white),
+              SizedBox(
+                width: LayoutConstants.spaceS,
+              ),
+              SubTitle4(content: '20,000', color: PaletteColor.white)
+            ],
+          ),
         ),
         SvgPicture.asset(IconsConstants.omnipay),
       ],
     );
   }
 
-  Widget _infoWidget() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        SubTitle4(content: '1234  5678  9012  3456', color: PaletteColor.white),
-        SizedBox(
-          height: LayoutConstants.spaceS,
-        ),
-        SubTitle1(content: 'EXP  01/22', color: PaletteColor.white)
-      ],
+  Widget _infoWidget(context) {
+    return Blur(
+      colorOpacity: 0,
+      blur:
+          Provider.of<CardsBloc>(context, listen: true).isBlock == true ? 5 : 0,
+      blurColor: Theme.of(context).primaryColor,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          SubTitle4(
+              content: '1234  5678  9012  3456', color: PaletteColor.white),
+          SizedBox(
+            height: LayoutConstants.spaceS,
+          ),
+          SubTitle1(content: 'EXP  01/22', color: PaletteColor.white)
+        ],
+      ),
     );
   }
 
-  Widget _footerWidget() {
+  Widget _footerWidget(context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         //  name
-        const SubTitle4(content: 'Jeremy Smith', color: PaletteColor.white),
+        Blur(
+            colorOpacity: 0,
+            blur: Provider.of<CardsBloc>(context, listen: true).isBlock == true
+                ? 5
+                : 0,
+            blurColor: Theme.of(context).primaryColor,
+            child: const SubTitle4(
+                content: 'Jeremy Smith', color: PaletteColor.white)),
         SvgPicture.asset(IconsConstants.cardIcon),
       ],
     );

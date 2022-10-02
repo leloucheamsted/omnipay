@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:omnipay/modules/card/presentation/pages/mycards.page.dart';
+import 'package:omnipay/modules/card/presentation/pages/my_cards.page.dart';
 import 'package:omnipay/modules/common/constants/font_family_constants.dart';
 import 'package:omnipay/modules/common/constants/font_size_contants.dart';
 import 'package:omnipay/modules/common/constants/icons_constants.dart';

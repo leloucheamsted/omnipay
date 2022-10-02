@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:omnipay/modules/card/bloc/cards_bloc.dart';
+import 'package:omnipay/modules/card/presentation/pages/add_another_card.page.dart';
+import 'package:omnipay/modules/card/presentation/pages/creation_card_confirmation.page.dart';
+import 'package:omnipay/modules/card/presentation/pages/my_cards_empty.page.dart';
+import 'package:omnipay/modules/card/presentation/pages/new_card_creation.page.dart';
+import 'package:omnipay/modules/card/presentation/pages/virtual_card_creation.page.dart';
 import 'package:omnipay/modules/common/constants/palette_color.dart';
 import 'package:omnipay/modules/common/constants/theme_constants.dart';
 import 'package:omnipay/modules/settings/bloc/settings_bloc.dart';
@@ -40,11 +46,14 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => SettingsBloc(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => CardsBloc(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeConstants.theme,
-        home: const SettingsPage(),
+        home: const NavBarPage(),
       ),
     );
   }

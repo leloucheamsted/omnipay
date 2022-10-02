@@ -48,7 +48,7 @@ class AppBarRightButton extends StatelessWidget {
       onTap: rightEvent,
       child: Container(
         alignment: Alignment.center,
-        width: 66,
+        // width: 66,
         height: 30,
         decoration: BoxDecoration(
             color: PaletteColor.white,

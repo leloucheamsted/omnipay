@@ -128,6 +128,7 @@ class BalanceController extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconCustomButton(
+          onTap: (() {}),
           background: PaletteColor.primary,
           textColor: PaletteColor.white,
           content: 'Reload',
@@ -135,6 +136,7 @@ class BalanceController extends StatelessWidget {
           icon: IconsConstants.plusIcon,
         ),
         IconCustomButton(
+          onTap: () {},
           content: 'Transfer',
           background: PaletteColor.primary,
           textColor: PaletteColor.white,
