@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../common/constants/constants.dart';
 import '../../../../common/widget.dart';
+import './reload_widget.dart';
 
 class BalanceController extends StatelessWidget {
   BalanceController({
@@ -14,7 +15,7 @@ class BalanceController extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       width: double.infinity,
-      height: 180,
+      //  height: 180,
       decoration: BoxDecoration(
           color: PaletteColor.white,
           borderRadius: BorderRadius.circular(LayoutConstants.radiusM),
@@ -51,7 +52,10 @@ class BalanceController extends StatelessWidget {
                 ],
               ),
             ),
-            _buttonaction(width),
+            const SizedBox(
+              height: LayoutConstants.spaceXL,
+            ),
+            _buttonaction(width, context),
           ],
         ),
       ),
@@ -70,7 +74,7 @@ class BalanceController extends StatelessWidget {
       height: LayoutConstants.btnHeight,
       width: width,
       decoration: BoxDecoration(
-          color: PaletteColor.primary,
+          // color: PaletteColor.primary,
           borderRadius: BorderRadius.circular(LayoutConstants.radiusS),
           boxShadow: const <BoxShadow>[
             BoxShadow(
@@ -100,7 +104,7 @@ class BalanceController extends StatelessWidget {
       height: LayoutConstants.btnHeight,
       width: width,
       decoration: BoxDecoration(
-          color: PaletteColor.primary,
+          // color: PaletteColor.primary,
           borderRadius: BorderRadius.circular(LayoutConstants.radiusS),
           boxShadow: const <BoxShadow>[
             BoxShadow(
@@ -123,27 +127,62 @@ class BalanceController extends StatelessWidget {
     );
   }
 
-  Widget _buttonaction(double width) {
+  Widget _buttonaction(double width, BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        IconCustomButton(
-          onTap: (() {}),
-          background: PaletteColor.primary,
-          textColor: PaletteColor.white,
-          content: 'Reload',
-          width: width,
-          icon: IconsConstants.plusIcon,
+        Material(
+          color: Colors.white.withOpacity(0.0),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(LayoutConstants.radiusS),
+            child: Ink(
+                decoration: BoxDecoration(
+                    color: PaletteColor.primary,
+                    borderRadius:
+                        BorderRadius.circular(LayoutConstants.radiusS),
+                    boxShadow: const <BoxShadow>[
+                      BoxShadow(
+                          color: Colors.white12,
+                          blurRadius: 30.0,
+                          offset: Offset(0.0, 0.75))
+                    ]),
+                child: _reloadButton(width)),
+            onTap: () {
+              _relaodSheet(context);
+            },
+          ),
         ),
-        IconCustomButton(
-          onTap: () {},
-          content: 'Transfer',
-          background: PaletteColor.primary,
-          textColor: PaletteColor.white,
-          width: width,
-          icon: IconsConstants.transfertIcon,
+        Material(
+          color: Colors.white.withOpacity(0.0),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(LayoutConstants.radiusS),
+            child: Ink(
+              decoration: BoxDecoration(
+                  color: PaletteColor.primary,
+                  borderRadius: BorderRadius.circular(LayoutConstants.radiusS),
+                  boxShadow: const <BoxShadow>[
+                    BoxShadow(
+                        color: Colors.white12,
+                        blurRadius: 30.0,
+                        offset: Offset(0.0, 0.75))
+                  ]),
+              child: _transfertButton(width),
+            ),
+            onTap: () {},
+          ),
         )
+        // IconCustomButton(
       ],
     );
+  }
+
+  void _relaodSheet(context) {
+    showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        backgroundColor: Colors.transparent,
+        builder: (BuildContext bc) {
+          return Form(key: key, child: const ReloadWidget());
+        });
   }
 }

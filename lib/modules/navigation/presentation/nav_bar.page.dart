@@ -31,6 +31,7 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: true,
         body: IndexedStack(
           index: context.watch<NavBarProvider>().currentTab,
           children: pages,

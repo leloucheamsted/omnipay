@@ -19,7 +19,7 @@ class ActionButtonCard extends StatelessWidget {
       children: [
         IconCustomButton(
             onTap: () {
-              privacyPolicy(context);
+              _relaodSheet(context);
             },
             width: (MediaQuery.of(context).size.width - 52) / 2,
             content: 'Reload',
@@ -39,7 +39,7 @@ class ActionButtonCard extends StatelessWidget {
     );
   }
 
-  void privacyPolicy(context) {
+  void _relaodSheet(context) {
     showModalBottomSheet(
         isScrollControlled: true,
         context: context,
