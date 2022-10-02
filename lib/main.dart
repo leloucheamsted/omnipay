@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:omnipay/modules/common/constants/palette_color.dart';
 import 'package:omnipay/modules/common/constants/theme_constants.dart';
+import 'package:omnipay/modules/transactions/presentation/pages/transactions.page.dart';
 import 'package:omnipay/modules/users/presentation/auth/bloc/auth_bloc.dart';
 import 'package:omnipay/modules/users/presentation/auth/pages/notification_permission.page.dart';
 import 'package:omnipay/modules/users/presentation/auth/pages/otp.page.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeConstants.theme,
-        home: const NotificationPermissionPage(),
+        home: const TransactionsPage(),
       ),
     );
   }

@@ -21,69 +21,61 @@ class PaymentMethodItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: LayoutConstants.itemlistHeight,
-        decoration: BoxDecoration(
-            color: PaletteColor.white,
-            borderRadius: BorderRadius.circular(LayoutConstants.radiusS),
-            boxShadow: const <BoxShadow>[
-              BoxShadow(
-                  color: Colors.white12,
-                  blurRadius: 15.0,
-                  offset: Offset(0.0, 0.75))
-            ]),
-        child: Padding(
-          padding: const EdgeInsets.all(LayoutConstants.paddingS),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SvgPicture.asset(
-                    ImagesConstants.mtnImage,
-                    height: 30,
-                  ),
-                  Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: avatarColor
-                        // image: DecorationImage(
-                        //   image: AssetImage(ImagesConstants.mastercardImage),
-                        //   fit: BoxFit.fitWidth,
-                        //   alignment: Alignment.topCenter,
-                        // ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: LayoutConstants.spaceS),
+      child: Container(
+          height: LayoutConstants.itemlistHeight,
+          decoration: BoxDecoration(
+              color: PaletteColor.white,
+              borderRadius: BorderRadius.circular(LayoutConstants.radiusS),
+              boxShadow: const <BoxShadow>[
+                BoxShadow(
+                    color: Colors.white12,
+                    blurRadius: 15.0,
+                    offset: Offset(0.0, 0.75))
+              ]),
+          child: Padding(
+            padding: const EdgeInsets.all(LayoutConstants.paddingS),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset(
+                      ImagesConstants.mtnImage,
+                      height: 45,
+                      width: 45,
+                    ),
+                    const SizedBox(
+                      width: LayoutConstants.spaceM,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        BodyText1(
+                            content: transactionType, color: PaletteColor.dark),
+                        const SizedBox(
+                          height: 3,
                         ),
-                  ),
-                  const SizedBox(
-                    width: LayoutConstants.spaceM,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      BodyText1(
-                          content: transactionType, color: PaletteColor.dark),
-                      const SizedBox(
-                        height: 3,
-                      ),
-                      BodyText2(content: dateTime, color: PaletteColor.grey),
-                    ],
-                  )
+                        BodyText2(content: dateTime, color: PaletteColor.grey),
+                      ],
+                    )
 
-                  // SvgPicture.asset(ImagesConstants.orangeImage),
-                ],
-              ),
-              Row(
-                children: [
-                  const BodyText2(content: '+FCFA ', color: PaletteColor.dark),
-                  BodyText2(content: amount, color: PaletteColor.dark),
-                ],
-              ),
-            ],
-          ),
-        ));
+                    // SvgPicture.asset(ImagesConstants.orangeImage),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const BodyText2(
+                        content: '+FCFA ', color: PaletteColor.dark),
+                    BodyText2(content: amount, color: PaletteColor.dark),
+                  ],
+                ),
+              ],
+            ),
+          )),
+    );
   }
 }

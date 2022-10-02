@@ -6,13 +6,14 @@ import 'package:omnipay/modules/common/constants/constants.dart';
 import '../../widget.dart';
 
 class AppBarRightButton extends StatelessWidget {
-  final String title, rightBtnText;
+  final String title;
+  final Widget rigthWidget;
   final VoidCallback rightEvent;
   const AppBarRightButton(
       {super.key,
       required this.rightEvent,
       required this.title,
-      required this.rightBtnText});
+      required this.rigthWidget});
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +59,7 @@ class AppBarRightButton extends StatelessWidget {
                   blurRadius: 15.0,
                   offset: Offset(0.0, 0.75))
             ]),
-        child: Title3(content: rightBtnText, color: PaletteColor.hinner),
+        child: rigthWidget,
       ),
     );
   }
