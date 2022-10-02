@@ -16,7 +16,7 @@ class IconsConstants {
   static const String infoIcon = 'assets/icons/info.svg';
   static const String lockIcon = 'assets/icons/lock.svg';
   static const String logoutIcon = 'assets/icons/logout.svg';
-  static const String notificationIcon = 'assets/icons/notification.svg';
+  static const String notificationIcon = 'assets/icons/notifications.svg';
   static const String phoneIcon = 'assets/icons/phone.svg';
   static const String plusIcon = 'assets/icons/plus.svg';
   static const String policyIcon = 'assets/icons/policy.svg';
@@ -25,5 +25,6 @@ class IconsConstants {
   static const String userIcon = 'assets/icons/user.svg';
   static const String cloudIcon = 'assets/icons/cloud.svg';
   static const String omnipay = 'assets/icons/omnipay.svg';
+  static const String shareIcon = 'assets/icons/share.svg';
   static const String spinner = 'assets/icons/spinner.svg';
 }

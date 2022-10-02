@@ -34,7 +34,7 @@ class Logout extends StatelessWidget {
               children: [
                 SvgPicture.asset(
                   IconsConstants.logoutIcon,
-                  height: 50,
+                  height: LayoutConstants.btnHeight,
                   width: 50,
                   color: PaletteColor.white,
                 ),

@@ -43,7 +43,7 @@ class PaymentMethodItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Image.asset(
-                      ImagesConstants.mtnImage,
+                      ImagesConstants.mastercardImage,
                       height: 45,
                       width: 45,
                     ),
