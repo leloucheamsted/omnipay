@@ -1,18 +1,22 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:omnipay/modules/card/presentation/pages/ui/bottomsheet/choice_amount.dart';
+import 'package:flutter/services.dart';
 import 'package:omnipay/modules/common/widget.dart';
 import 'package:omnipay/modules/common/widgets/textfield/text_field_container.dart';
+import 'package:omnipay/modules/home/bloc/reload_bloc.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../common/constants/constants.dart';
 import '../../../../common/widgets/button/icontinue_button.dart';
+
+TextEditingController amountController = TextEditingController();
 
 class ReloadWidget extends StatelessWidget {
   const ReloadWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController amountController = TextEditingController();
-
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -32,32 +36,39 @@ class ReloadWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  BottomSheetHeader(onClose: () {}, title: 'Reload'),
+                  BottomSheetHeader(
+                      onClose: () => closeReloadView(context), title: 'Reload'),
                   const SizedBox(
                     height: LayoutConstants.spaceL,
                   ),
                   TextFielContainer(
-                    showchild: false,
+                    showchild: !context.watch<HomeBloc>().isValidAmountR,
                     errorMessage: "errorMessage",
                     alignment: Alignment.centerLeft,
-                    typeInfo: TypeInfo.message,
+                    typeInfo: !context.watch<HomeBloc>().isValidAmountR
+                        ? TypeInfo.error
+                        : TypeInfo.message,
                     infoWidget: const ErrorText(
                         content: 'Enter your last name here.',
                         color: PaletteColor.danger),
-                    child: CustomTextField(
-                      placeholder: 'Enter the amount to reload',
-                      textController: amountController,
-                    ),
                     messageWidget: const ErrorText(
                         content: 'Min: FCFA 5,000 - Max: 50,000',
                         color: PaletteColor.primary),
+                    child: CustomTextField(
+                      inputFormatter: <TextInputFormatter>[
+                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                      ],
+                      textInputType: TextInputType.number,
+                      placeholder: 'Enter the amount to reload',
+                      textController: amountController,
+                    ),
                   ),
                   const SizedBox(
                     height: LayoutConstants.spaceL,
                   ),
-                  ChoiceAmount(
-                      width: (MediaQuery.of(context).size.width - 60) / 3,
-                      amount: '5,000'),
+                  _choiceAmount(
+                    (MediaQuery.of(context).size.width - 60) / 3,
+                  ),
                   const SizedBox(
                     height: LayoutConstants.spaceL,
                   ),
@@ -71,12 +82,51 @@ class ReloadWidget extends StatelessWidget {
     );
   }
 
+  void closeReloadView(context) {
+    log("info: close reload amount pop");
+    Navigator.pop(context);
+  }
+
+  Widget _choiceAmount(double width) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        _amountWidget('5,000', width),
+        _amountWidget('10,000', width),
+        _amountWidget('15,000', width),
+      ],
+    );
+  }
+
+  Widget _amountWidget(String amount, double width) {
+    return GestureDetector(
+      onTap: () {
+        log("info: $amount refill has been selected");
+        final output = amount.replaceAll(RegExp(','), '');
+        amountController.text = int.parse(output).toString();
+      },
+      child: Container(
+        alignment: Alignment.center,
+        height: LayoutConstants.btnHeight,
+        width: width,
+        decoration: BoxDecoration(
+            color: PaletteColor.greyLight, // ORIGINAL COLOR IS GRAYLIGHT
+            borderRadius: BorderRadius.circular(LayoutConstants.radiusS)),
+        child: BodyText2(content: 'FCFA $amount', color: PaletteColor.dark),
+      ),
+    );
+  }
+
   Widget _continueButton(BuildContext context) {
     return InkWell(
         borderRadius: BorderRadius.circular(LayoutConstants.radiusS),
         splashColor: PaletteColor.white,
         //hoverColor: PaletteColor.white,
-        onTap: () {},
+        onTap: () {
+          context
+              .read<HomeBloc>()
+              .verifyAmount(int.parse(amountController.text));
+        },
         child: Container(
             decoration: BoxDecoration(
                 color: PaletteColor.primary,

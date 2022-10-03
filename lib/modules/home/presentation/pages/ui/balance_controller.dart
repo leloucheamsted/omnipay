@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -148,6 +150,7 @@ class BalanceController extends StatelessWidget {
                     ]),
                 child: _reloadButton(width)),
             onTap: () {
+              log("info: show reload amout pop");
               _relaodSheet(context);
             },
           ),

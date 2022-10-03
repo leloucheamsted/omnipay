@@ -5,8 +5,14 @@ import 'package:omnipay/modules/common/constants/constants.dart';
 class CustomTextField extends StatefulWidget {
   final String placeholder;
   final TextEditingController textController;
+  final TextInputType? textInputType;
+  final List<TextInputFormatter>? inputFormatter;
   const CustomTextField(
-      {super.key, required this.placeholder, required this.textController});
+      {super.key,
+      required this.placeholder,
+      required this.textController,
+      this.inputFormatter,
+      this.textInputType});
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -23,9 +29,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
       padding: const EdgeInsets.fromLTRB(
           LayoutConstants.paddingS, 8, LayoutConstants.paddingS, 4),
       child: TextField(
-        autofocus: true,
+        autofocus: false,
+        inputFormatters: widget.inputFormatter,
         controller: widget.textController,
-        keyboardType: TextInputType.text,
+        keyboardType: widget.textInputType,
+        // keyboardType: TextInputType.text,
         textAlign: TextAlign.left,
         style: TextStyle(
             fontSize: FontsSizeConstants.title3,

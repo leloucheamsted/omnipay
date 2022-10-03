@@ -8,6 +8,8 @@ import 'package:omnipay/modules/card/presentation/pages/new_card_creation.page.d
 import 'package:omnipay/modules/card/presentation/pages/virtual_card_creation.page.dart';
 import 'package:omnipay/modules/common/constants/palette_color.dart';
 import 'package:omnipay/modules/common/constants/theme_constants.dart';
+import 'package:omnipay/modules/home/bloc/reload_bloc.dart';
+import 'package:omnipay/modules/home/presentation/pages/recharge_method_list.page.dart';
 import 'package:omnipay/modules/settings/bloc/settings_bloc.dart';
 import 'package:omnipay/modules/settings/presentation/pages/settings.page.dart';
 import 'package:omnipay/modules/transactions/presentation/pages/transactions.page.dart';
@@ -49,11 +51,14 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => CardsBloc(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => HomeBloc(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeConstants.theme,
-        home: const NavBarPage(),
+        home: const RechargeMethodListPage(),
       ),
     );
   }
