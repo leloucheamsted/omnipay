@@ -41,8 +41,8 @@ class RechargeMethodItem extends StatelessWidget {
                   children: [
                     Image.asset(
                       icon!,
-                      height: 45,
-                      width: 45,
+                      height: 50,
+                      width: 50,
                     ),
                     const SizedBox(
                       width: LayoutConstants.spaceM,

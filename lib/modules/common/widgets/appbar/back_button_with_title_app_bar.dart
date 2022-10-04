@@ -16,14 +16,14 @@ class BackButtonWithTitleAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.bottomLeft,
-      height: LayoutConstants.appBarSize * 2,
+      height: LayoutConstants.appBarSize * 2.5,
       color: PaletteColor.greyLight,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(
             LayoutConstants.paddingM,
             LayoutConstants.paddingM,
             LayoutConstants.paddingM,
-            LayoutConstants.paddingS),
+            LayoutConstants.paddingM),
         child: Row(
           children: [
             InkWell(

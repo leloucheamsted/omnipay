@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:omnipay/modules/common/widget.dart';
 import 'package:omnipay/modules/common/widgets/textfield/text_field_container.dart';
 import 'package:omnipay/modules/home/bloc/home_bloc.dart';
@@ -9,12 +10,11 @@ import 'package:provider/provider.dart';
 
 import '../../../../common/constants/constants.dart';
 import '../../../../common/widgets/button/icontinue_button.dart';
-import '../recharge_method_list.page.dart';
 
-TextEditingController amountController = TextEditingController();
+TextEditingController phoneController = TextEditingController();
 
-class ReloadWidget extends StatelessWidget {
-  const ReloadWidget({super.key});
+class EnterNumberWidget extends StatelessWidget {
+  const EnterNumberWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,41 +39,44 @@ class ReloadWidget extends StatelessWidget {
                 children: [
                   BottomSheetHeader(
                       onClose: () => closeReloadView(context),
-                      title: context.watch<HomeBloc>().typeAction ==
-                              TypeAction.reload.name
-                          ? 'Reload'
-                          : 'Transfer'),
+                      title: context.watch<HomeBloc>().operator ==
+                              Operator.mtn.name
+                          ? 'MTN Mobile money'
+                          : 'Orange Mobile Money'),
                   const SizedBox(
                     height: LayoutConstants.spaceL,
                   ),
                   TextFielContainer(
-                    showchild: !context.watch<HomeBloc>().isValidAmountR,
+                    showchild: !context.watch<HomeBloc>().isValidPhoneNumber,
                     errorMessage: "errorMessage",
                     alignment: Alignment.centerLeft,
-                    typeInfo: !context.watch<HomeBloc>().isValidAmountR
+                    typeInfo: !context.watch<HomeBloc>().isValidPhoneNumber
                         ? TypeInfo.error
                         : TypeInfo.message,
                     infoWidget: const ErrorText(
-                        content: 'Enter your last name here.',
+                        content: 'Enter a valid mobile money number.',
                         color: PaletteColor.danger),
-                    messageWidget: const ErrorText(
-                        content: 'Min: FCFA 5,000 - Max: 50,000',
-                        color: PaletteColor.primary),
+                    messageWidget: Row(
+                      children: [
+                        SvgPicture.asset(IconsConstants.lockIcon,
+                            color: PaletteColor.primary),
+                        const SizedBox(
+                          width: LayoutConstants.spaceS,
+                        ),
+                        ErrorText(
+                            content:
+                                'Processed securely by ${context.watch<HomeBloc>().operator.toString().toUpperCase()} Mobile Money',
+                            color: PaletteColor.primary),
+                      ],
+                    ),
                     child: CustomTextField(
                       inputFormatter: <TextInputFormatter>[
                         FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                       ],
                       textInputType: TextInputType.number,
-                      placeholder:
-                          'Enter the amount to ${context.watch<HomeBloc>().typeAction}',
-                      textController: amountController,
+                      placeholder: 'Enter your mobile money number',
+                      textController: phoneController,
                     ),
-                  ),
-                  const SizedBox(
-                    height: LayoutConstants.spaceL,
-                  ),
-                  _choiceAmount(
-                    (MediaQuery.of(context).size.width - 60) / 3,
                   ),
                   const SizedBox(
                     height: LayoutConstants.spaceL,
@@ -89,38 +92,8 @@ class ReloadWidget extends StatelessWidget {
   }
 
   void closeReloadView(context) {
-    log("info: close reload amount pop");
+    log("info: close input Phone Number  pop");
     Navigator.pop(context);
-  }
-
-  Widget _choiceAmount(double width) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        _amountWidget('5,000', width),
-        _amountWidget('10,000', width),
-        _amountWidget('15,000', width),
-      ],
-    );
-  }
-
-  Widget _amountWidget(String amount, double width) {
-    return GestureDetector(
-      onTap: () {
-        log("info: $amount refill has been selected");
-        final output = amount.replaceAll(RegExp(','), '');
-        amountController.text = int.parse(output).toString();
-      },
-      child: Container(
-        alignment: Alignment.center,
-        height: LayoutConstants.btnHeight,
-        width: width,
-        decoration: BoxDecoration(
-            color: PaletteColor.greyLight, // ORIGINAL COLOR IS GRAYLIGHT
-            borderRadius: BorderRadius.circular(LayoutConstants.radiusS)),
-        child: BodyText2(content: 'FCFA $amount', color: PaletteColor.dark),
-      ),
-    );
   }
 
   Widget _continueButton(BuildContext context) {
@@ -129,21 +102,7 @@ class ReloadWidget extends StatelessWidget {
         splashColor: PaletteColor.white,
         //hoverColor: PaletteColor.white,
         onTap: () {
-          if (amountController.text.isNotEmpty) if (context
-                  .read<HomeBloc>()
-                  .verifyAmount(int.parse(amountController.text)) ==
-              true) {
-            print(context
-                .read<HomeBloc>()
-                .verifyAmount(int.parse(amountController.text)));
-            Navigator.pop(context);
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const RechargeMethodListPage()));
-            // MaterialPageRoute(builder: (context) => RechargeMethodListPage());
-          }
-          ;
+          context.read<HomeBloc>().verifyPhoneNumber(phoneController.text);
         },
         child: Container(
             decoration: BoxDecoration(

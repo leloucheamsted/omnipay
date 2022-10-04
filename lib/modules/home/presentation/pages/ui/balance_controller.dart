@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:omnipay/modules/home/bloc/home_bloc.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../common/constants/constants.dart';
 import '../../../../common/widget.dart';
@@ -150,8 +152,7 @@ class BalanceController extends StatelessWidget {
                     ]),
                 child: _reloadButton(width)),
             onTap: () {
-              log("info: show reload amout pop");
-              _relaodSheet(context);
+              _actionButtonFunc(context, TypeAction.reload.name);
             },
           ),
         ),
@@ -171,12 +172,20 @@ class BalanceController extends StatelessWidget {
                   ]),
               child: _transfertButton(width),
             ),
-            onTap: () {},
+            onTap: () {
+              _actionButtonFunc(context, TypeAction.transfer.name);
+            },
           ),
         )
         // IconCustomButton(
       ],
     );
+  }
+
+  _actionButtonFunc(BuildContext context, String operation) {
+    log("info: show reload amout pop with $operation operation");
+    context.read<HomeBloc>().changeTypeAction(operation);
+    _relaodSheet(context);
   }
 
   void _relaodSheet(context) {
