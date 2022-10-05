@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeConstants.theme,
-        home: const TransferReloadingPage(),
+        home: const RechargeLoadingPage(),
       ),
     );
   }
