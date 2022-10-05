@@ -10,10 +10,11 @@ class ThemeConstants {
     scaffoldBackgroundColor: PaletteColor.greyLight,
     appBarTheme: AppBarTheme(
       elevation: 0,
+      backgroundColor: PaletteColor.greyLight,
+      foregroundColor: PaletteColor.greyLight,
       toolbarTextStyle: const TextTheme(
         headline6: TextStyle(
           color: Colors.white,
-          backgroundColor: PaletteColor.white,
           fontSize: 18.0,
           fontWeight: FontWeight.w400,
         ),
