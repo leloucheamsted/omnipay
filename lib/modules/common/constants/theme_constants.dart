@@ -13,6 +13,7 @@ class ThemeConstants {
       toolbarTextStyle: const TextTheme(
         headline6: TextStyle(
           color: Colors.white,
+          backgroundColor: PaletteColor.white,
           fontSize: 18.0,
           fontWeight: FontWeight.w400,
         ),
