@@ -1,9 +1,9 @@
-import 'package:flutter/rendering.dart';
+// ignore_for_file: implementation_imports
+
 import 'package:flutter/src/widgets/basic.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
-import 'package:omnipay/modules/common/constants/layout_constants.dart';
 import 'package:omnipay/modules/common/widget.dart';
 
 class TextAppBar extends StatelessWidget {

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:omnipay/modules/common/constants/icons_constants.dart';
 
@@ -25,7 +23,7 @@ class ButtonAppBar extends StatelessWidget {
             LayoutConstants.paddingZero),
         child: InkWell(
           onTap: backEvent,
-          child: Container(
+          child: SizedBox(
             height: 25,
             width: 25,
             child: SvgPicture.asset(IconsConstants.arrowleftIcon),

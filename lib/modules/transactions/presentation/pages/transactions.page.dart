@@ -48,7 +48,7 @@ class TransactionsPage extends StatelessWidget {
     );
   }
 
-  Widget _notItem() {
+  Widget notItem() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

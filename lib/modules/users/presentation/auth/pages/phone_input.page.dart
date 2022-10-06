@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widget.dart';
@@ -17,6 +16,7 @@ class PhoneInputPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: PaletteColor.white,
       appBar: AppBar(
+          elevation: 0,
           toolbarHeight: LayoutConstants.appBarSize,
           flexibleSpace: const TextAppBar(
             color: PaletteColor.white,
@@ -49,12 +49,15 @@ class PhoneInputPage extends StatelessWidget {
                   ),
                   ContinuButton(
                       event: () {
+                        if (kDebugMode) {
+                          print('object');
+                        }
                         context.read<AuthBloc>().phoneNumberVerification();
                         if (context.read<AuthBloc>().isValidNumber == true) {
                           privacyPolicy(context);
                         }
                       },
-                      widget: Text('data')),
+                      widget: const Text('data')),
                 ],
               ),
             ),

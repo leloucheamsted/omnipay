@@ -1,9 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widget.dart';
+import 'package:omnipay/modules/users/presentation/auth/bloc/auth_bloc.dart';
+
+AuthBloc bloc = AuthBloc();
 
 class PrivacyPolicyWidget extends StatelessWidget {
   const PrivacyPolicyWidget({super.key});
@@ -72,7 +74,9 @@ class PrivacyPolicyWidget extends StatelessWidget {
                       textColor: PaletteColor.dark,
                     ),
                     WidthButton(
-                      event: () {},
+                      event: () {
+                        _goOtpPage(context);
+                      },
                       width: (MediaQuery.of(context).size.width - 37) / 2,
                       content: 'Accept',
                       background: PaletteColor.primaryLight,
@@ -86,5 +90,11 @@ class PrivacyPolicyWidget extends StatelessWidget {
         ),
       ]),
     );
+  }
+
+  void _goOtpPage(context) {
+    Navigator.pop(context);
+    bloc.goOtpPage();
+    //Get.toNamed('/otp');
   }
 }

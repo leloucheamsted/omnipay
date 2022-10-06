@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:omnipay/modules/card/presentation/pages/my_cards.page.dart';
 import 'package:omnipay/modules/common/constants/font_family_constants.dart';
 import 'package:omnipay/modules/common/constants/font_size_contants.dart';
 import 'package:omnipay/modules/common/constants/icons_constants.dart';
 import 'package:omnipay/modules/common/constants/palette_color.dart';
-import 'package:omnipay/modules/common/widgets/typography/typo.widget.dart';
 import 'package:omnipay/modules/home/presentation/pages/home.page.dart';
 import 'package:omnipay/modules/navigation/bloc/nav_bloc.dart';
 import 'package:omnipay/modules/settings/presentation/pages/settings.page.dart';
@@ -38,7 +35,7 @@ class _NavBarPageState extends State<NavBarPage> {
         ),
         bottomNavigationBar: BottomAppBar(
           elevation: 19,
-          shape: CircularNotchedRectangle(),
+          shape: const CircularNotchedRectangle(),
           notchMargin: 10,
           child: Container(
               height: 60,
@@ -48,7 +45,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   BoxShadow(
                       color: Colors.black.withOpacity(.1),
                       blurRadius: 15.0,
-                      offset: Offset(0.0, 0.75))
+                      offset: const Offset(0.0, 0.75))
                 ],
               ),
               child: Padding(

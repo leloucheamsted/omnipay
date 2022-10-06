@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
-import 'package:omnipay/modules/common/constants/font_family_constants.dart';
 
 class Title1 extends StatelessWidget {
   final String content;

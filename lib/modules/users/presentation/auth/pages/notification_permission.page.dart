@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widget.dart';
 import 'package:omnipay/modules/common/widgets/appbar/blank_app_bar.dart';
-import 'package:omnipay/modules/common/widgets/button/activenotif_button.dart';
 
 class NotificationPermissionPage extends StatelessWidget {
   const NotificationPermissionPage({super.key});
@@ -41,7 +38,7 @@ class NotificationPermissionPage extends StatelessWidget {
                 ],
               ),
             ),
-            ActiveNotifButton(event: () {}, widget: Text(''))
+            ActiveNotifButton(event: () {}, widget: const Text(''))
           ],
         ),
       ),

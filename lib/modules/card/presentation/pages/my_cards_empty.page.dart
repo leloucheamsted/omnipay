@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:omnipay/modules/common/widgets/button/create_new_card_button.dart';
 
 import '../../../common/constants/constants.dart';
 import '../../../common/widget.dart';
@@ -42,7 +39,7 @@ class NoCardPage extends StatelessWidget {
                 ],
               ),
             ),
-            CreateNewCardButton(event: () {}, widget: Text(''))
+            CreateNewCardButton(event: () {}, widget: const Text(''))
           ],
         ),
       ),

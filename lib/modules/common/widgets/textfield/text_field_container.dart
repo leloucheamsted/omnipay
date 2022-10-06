@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
-import 'package:omnipay/modules/common/widget.dart';
 
 class TextFielContainer extends StatefulWidget {
   final double? width;

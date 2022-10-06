@@ -1,4 +1,4 @@
-import 'package:flutter/src/widgets/container.dart';
+// ignore: implementation_imports
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:omnipay/modules/card/presentation/pages/add_another_card.page.dart';
 
@@ -7,6 +7,6 @@ class MyCardsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AddAnotherCardPage();
+    return const AddAnotherCardPage();
   }
 }

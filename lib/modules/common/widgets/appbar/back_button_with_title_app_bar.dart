@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../constants/constants.dart';
@@ -28,7 +26,7 @@ class BackButtonWithTitleAppBar extends StatelessWidget {
           children: [
             InkWell(
               onTap: backEvent,
-              child: Container(
+              child: SizedBox(
                 height: 30,
                 width: 30,
                 child: SvgPicture.asset(IconsConstants.arrowleftIcon),

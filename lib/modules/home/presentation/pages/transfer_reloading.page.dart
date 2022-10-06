@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widget.dart';
 import 'package:omnipay/modules/common/widgets/appbar/blank_app_bar.dart';
-import 'package:omnipay/modules/common/widgets/button/activenotif_button.dart';
-import 'package:omnipay/modules/common/widgets/button/dial_button.dart';
 
 class TransferReloadingPage extends StatelessWidget {
   const TransferReloadingPage({super.key});
@@ -82,9 +78,9 @@ class TransferReloadingPage extends StatelessWidget {
                 blurRadius: 30.0,
                 offset: Offset(0.0, 0.75))
           ]),
-      child: Padding(
-          padding: const EdgeInsets.all(LayoutConstants.paddingS),
-          child: const BodyText1(content: 'Close', color: PaletteColor.white)),
+      child: const Padding(
+          padding: EdgeInsets.all(LayoutConstants.paddingS),
+          child: BodyText1(content: 'Close', color: PaletteColor.white)),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:omnipay/modules/common/widget.dart';
@@ -129,13 +130,16 @@ class ReloadWidget extends StatelessWidget {
         splashColor: PaletteColor.white,
         //hoverColor: PaletteColor.white,
         onTap: () {
+          // ignore: curly_braces_in_flow_control_structures
           if (amountController.text.isNotEmpty) if (context
                   .read<HomeBloc>()
                   .verifyAmount(int.parse(amountController.text)) ==
               true) {
-            print(context
-                .read<HomeBloc>()
-                .verifyAmount(int.parse(amountController.text)));
+            if (kDebugMode) {
+              print(context
+                  .read<HomeBloc>()
+                  .verifyAmount(int.parse(amountController.text)));
+            }
             Navigator.pop(context);
             Navigator.push(
                 context,
@@ -143,7 +147,6 @@ class ReloadWidget extends StatelessWidget {
                     builder: (context) => const RechargeMethodListPage()));
             // MaterialPageRoute(builder: (context) => RechargeMethodListPage());
           }
-          ;
         },
         child: Container(
             decoration: BoxDecoration(

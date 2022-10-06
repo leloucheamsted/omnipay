@@ -42,6 +42,8 @@ dependencies:
   path_provider: ^2.0.11
   blur: ^3.0.0
   get: ^4.6.5
+  # flutter_modular: ^5.0.3
+  rxdart: ^0.27.5
 
 dev_dependencies:
   flutter_test:

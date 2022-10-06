@@ -11,7 +11,9 @@ class NavBarProvider with ChangeNotifier {
 
   NavBarProvider() {
     _currentTab = 0;
-    print(currentTab);
+    if (kDebugMode) {
+      print(currentTab);
+    }
   }
 
   changeTab(int tabIndex) {

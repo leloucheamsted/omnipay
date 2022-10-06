@@ -1,11 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widgets/button/icontinue_button.dart';
-import 'package:omnipay/modules/common/widgets/button/ihelp_button.dart';
 
 class DialButton extends StatefulWidget {
   final VoidCallback event;
@@ -29,6 +24,7 @@ class _DialButtonState extends State<DialButton>
         min: 0.0, max: 1.0, period: const Duration(milliseconds: 12));
   }
 
+  @override
   void dispose() {
     controller.dispose();
     super.dispose();

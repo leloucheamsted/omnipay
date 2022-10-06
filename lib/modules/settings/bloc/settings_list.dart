@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:omnipay/modules/common/constants/icons_constants.dart';
 
 class SettingsEntity {

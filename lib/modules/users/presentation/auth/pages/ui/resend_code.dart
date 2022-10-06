@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:omnipay/modules/common/constants/palette_color.dart';
 import 'package:omnipay/modules/common/widgets/typography/typo.widget.dart';
 

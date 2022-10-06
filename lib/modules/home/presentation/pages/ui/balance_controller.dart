@@ -10,7 +10,7 @@ import '../../../../common/widget.dart';
 import './reload_widget.dart';
 
 class BalanceController extends StatelessWidget {
-  BalanceController({
+  const BalanceController({
     super.key,
   });
   @override

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:omnipay/modules/card/presentation/pages/ui/circle_icon.dart';
 import 'package:omnipay/modules/common/widget.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:omnipay/modules/settings/bloc/settings_bloc.dart';

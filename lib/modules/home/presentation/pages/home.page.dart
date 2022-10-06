@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:omnipay/modules/home/presentation/pages/ui/balance_controller.dart';
-import 'package:omnipay/modules/home/presentation/pages/ui/recent_transaction.dart';
 
 import '../../../common/constants/constants.dart';
 import '../../../common/widget.dart';
@@ -34,7 +31,7 @@ class HomePage extends StatelessWidget {
             const SizedBox(
               height: LayoutConstants.spaceS,
             ),
-            BalanceController(),
+            const BalanceController(),
             const SizedBox(
               height: LayoutConstants.spaceL,
             ),
@@ -72,7 +69,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _notItem() {
+  Widget notItem() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -78,7 +78,7 @@ class _InputNumberState extends State<InputNumber> {
       autofocus: true,
       // controller: _phoneTxtCtrl,
       onChanged: ((value) {
-        context.watch<AuthBloc>().setPhoneNumber = value;
+        context.read<AuthBloc>().setPhoneNumber = value;
       }),
       keyboardType: TextInputType.number,
       textAlign: TextAlign.left,

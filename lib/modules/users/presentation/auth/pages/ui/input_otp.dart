@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
-import 'package:omnipay/modules/common/constants/font_family_constants.dart';
-import 'package:omnipay/modules/common/constants/font_size_contants.dart';
 import 'package:omnipay/modules/users/presentation/auth/bloc/auth_bloc.dart';
 import 'package:provider/provider.dart';
 

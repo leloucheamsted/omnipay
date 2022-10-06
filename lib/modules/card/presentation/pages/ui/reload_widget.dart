@@ -42,13 +42,13 @@ class ReloadWidget extends StatelessWidget {
                     infoWidget: const ErrorText(
                         content: 'Enter your last name here.',
                         color: PaletteColor.danger),
+                    messageWidget: const ErrorText(
+                        content: 'Min: FCFA 5,000 - Max: 50,000',
+                        color: PaletteColor.primary),
                     child: CustomTextField(
                       placeholder: 'Enter the amount to reload',
                       textController: amountController,
                     ),
-                    messageWidget: const ErrorText(
-                        content: 'Min: FCFA 5,000 - Max: 50,000',
-                        color: PaletteColor.primary),
                   ),
                   const SizedBox(
                     height: LayoutConstants.spaceL,

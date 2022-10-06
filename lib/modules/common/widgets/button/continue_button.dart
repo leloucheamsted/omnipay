@@ -1,11 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widgets/button/icontinue_button.dart';
-import 'package:omnipay/modules/common/widgets/button/ihelp_button.dart';
+import 'package:omnipay/modules/users/presentation/auth/bloc/auth_bloc.dart';
+import 'package:provider/provider.dart';
 
 class ContinuButton extends StatefulWidget {
   final VoidCallback event;
@@ -18,6 +15,7 @@ class ContinuButton extends StatefulWidget {
 
 class _ContinuButtonState extends State<ContinuButton>
     with SingleTickerProviderStateMixin {
+  bool isLoading = false;
   late AnimationController controller;
 
   @override
@@ -29,8 +27,10 @@ class _ContinuButtonState extends State<ContinuButton>
         min: 0.0, max: 1.0, period: const Duration(milliseconds: 12));
   }
 
+  @override
   void dispose() {
     controller.dispose();
+    //context.read<AuthBloc>().showLoadingAnimation();
     super.dispose();
   }
 
@@ -48,15 +48,23 @@ class _ContinuButtonState extends State<ContinuButton>
             child: IContinueButton(
               widget:
                   //;
-                  Text(
-                'Continue',
-                style: TextStyle(
-                  color: PaletteColor.white,
-                  fontFamily: FontsFamilyConstants.fontRegular,
-                  fontWeight: FontWeight.w400,
-                  fontSize: FontsSizeConstants.title3,
-                ),
-              ),
+                  context.watch<AuthBloc>().isLoading == true
+                      ? const SizedBox(
+                          width: 16,
+                          height: 16,
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                            strokeWidth: 1.5,
+                          ))
+                      : Text(
+                          'Continue',
+                          style: TextStyle(
+                            color: PaletteColor.white,
+                            fontFamily: FontsFamilyConstants.fontRegular,
+                            fontWeight: FontWeight.w400,
+                            fontSize: FontsSizeConstants.title3,
+                          ),
+                        ),
             )));
   }
 }

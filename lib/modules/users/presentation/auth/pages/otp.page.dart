@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:omnipay/modules/common/constants/palette_color.dart';
-import 'package:omnipay/modules/common/widgets/appbar/button_app_bar.dart';
-import 'package:omnipay/modules/common/widgets/textfield/text_field_container.dart';
 import 'package:omnipay/modules/users/presentation/auth/pages/ui/input_otp.dart';
 import 'package:omnipay/modules/users/presentation/auth/pages/ui/resend_code.dart';
 import 'package:provider/provider.dart';
@@ -62,7 +57,7 @@ class _OtpPageState extends State<OtpPage> {
                   // privacyPolicy(context);
                   //  }
                 },
-                widget: Text('data')),
+                widget: const Text('data')),
             const SizedBox(
               height: LayoutConstants.spaceM,
             ),

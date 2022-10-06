@@ -1,31 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get.dart';
 import 'package:omnipay/modules/card/bloc/cards_bloc.dart';
-import 'package:omnipay/modules/card/presentation/pages/add_another_card.page.dart';
-import 'package:omnipay/modules/card/presentation/pages/creation_card_confirmation.page.dart';
-import 'package:omnipay/modules/card/presentation/pages/my_cards_empty.page.dart';
-import 'package:omnipay/modules/card/presentation/pages/new_card_creation.page.dart';
-import 'package:omnipay/modules/card/presentation/pages/virtual_card_creation.page.dart';
-import 'package:omnipay/modules/common/constants/palette_color.dart';
-import 'package:omnipay/modules/common/constants/theme_constants.dart';
 import 'package:omnipay/modules/home/bloc/home_bloc.dart';
-import 'package:omnipay/modules/home/presentation/pages/home.page.dart';
-import 'package:omnipay/modules/home/presentation/pages/recharge_method_list.page.dart';
-import 'package:omnipay/modules/home/presentation/pages/transfer_reloading.page.dart';
 import 'package:omnipay/modules/settings/bloc/settings_bloc.dart';
-import 'package:omnipay/modules/settings/presentation/pages/settings.page.dart';
-import 'package:omnipay/modules/transactions/presentation/pages/transactions.page.dart';
 import 'package:omnipay/modules/users/presentation/auth/bloc/auth_bloc.dart';
-import 'package:omnipay/modules/users/presentation/auth/pages/notification_permission.page.dart';
-import 'package:omnipay/modules/users/presentation/auth/pages/otp.page.dart';
-import 'package:omnipay/modules/users/presentation/auth/pages/personnnal_information.page.dart';
-import 'package:omnipay/modules/users/presentation/auth/pages/phone_input.page.dart';
+import 'package:omnipay/routes/app_routes.enum.dart';
 import 'package:provider/provider.dart';
-
-import 'modules/home/presentation/pages/recharge_loading.page.dart';
+import 'modules/common/constants/constants.dart';
 import 'modules/navigation/bloc/nav_bloc.dart';
 import 'modules/navigation/presentation/nav_bar.page.dart';
+import './modules/users/users_module.dart';
+import './modules/home/home_module.dart';
+import './modules/card/cards_module.dart';
 
 void main() {
   runApp(const MyApp());
@@ -62,7 +49,40 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeConstants.theme,
-        home: const RechargeLoadingPage(),
+        home: const PhoneInputPage(),
+        getPages: [
+          GetPage(
+              name: AppRoute.auth.pathAsChild,
+              page: () => const PhoneInputPage()),
+          GetPage(name: AppRoute.otp.pathAsChild, page: () => const OtpPage()),
+          GetPage(
+              name: AppRoute.userCreate.pathAsChild,
+              page: () => const PersonnalInformationPage()),
+          GetPage(
+              name: AppRoute.notif.pathAsChild,
+              page: () => const NotificationPermissionPage()),
+          GetPage(
+              name: AppRoute.home.pathAsChild, page: () => const NavBarPage()),
+          GetPage(
+              name: AppRoute.newCard.pathAsChild,
+              page: () => const CardCreation()),
+          GetPage(
+              name: AppRoute.virtualCard.pathAsChild,
+              page: () => const VirtualCardCreationPage()),
+          GetPage(
+              name: AppRoute.tLoading.pathAsChild,
+              page: () => const TransferReloadingPage()),
+          GetPage(
+              name: AppRoute.rLoading.pathAsChild,
+              page: () => const RechargeLoadingPage()),
+          GetPage(
+              name: AppRoute.methodList.pathAsChild,
+              page: () => const RechargeMethodListPage()),
+          GetPage(
+              name: AppRoute.cardConfirmation.pathAsChild,
+              page: () => const CreationCardConfirmationPage()),
+          //  RedirectRoute('/redirect', to: '/home')
+        ],
       ),
     );
   }

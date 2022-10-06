@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:omnipay/modules/card/presentation/pages/ui/circle_icon.dart';
 import 'package:omnipay/modules/common/widget.dart';
@@ -75,46 +73,44 @@ class CostCardWidget extends StatelessWidget {
   }
 
   Widget _cardOption(String title, content) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CircleIcon(
-              size: 50,
-              color: PaletteColor.primaryLight.withOpacity(0.1),
-              child: SvgPicture.asset(IconsConstants.checkIcon)),
-          const SizedBox(
-            width: LayoutConstants.spaceM,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CircleIcon(
+            size: 50,
+            color: PaletteColor.primaryLight.withOpacity(0.1),
+            child: SvgPicture.asset(IconsConstants.checkIcon)),
+        const SizedBox(
+          width: LayoutConstants.spaceM,
+        ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              BodyText1(content: title, color: PaletteColor.dark),
+              const SizedBox(
+                height: LayoutConstants.spaceS,
+              ),
+              // Expanded(
+              // child:
+              Text(
+                content,
+                softWrap: false,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 4,
+                style: TextStyle(
+                  color: PaletteColor.dark,
+                  fontFamily: FontsFamilyConstants.fontMedium,
+                  fontWeight: FontWeight.w400,
+                  fontSize: FontsSizeConstants.bodytext1,
+                ),
+              ),
+              // )
+            ],
           ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                BodyText1(content: title, color: PaletteColor.dark),
-                const SizedBox(
-                  height: LayoutConstants.spaceS,
-                ),
-                // Expanded(
-                // child:
-                Text(
-                  content,
-                  softWrap: false,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 4,
-                  style: TextStyle(
-                    color: PaletteColor.dark,
-                    fontFamily: FontsFamilyConstants.fontMedium,
-                    fontWeight: FontWeight.w400,
-                    fontSize: FontsSizeConstants.bodytext1,
-                  ),
-                ),
-                // )
-              ],
-            ),
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
 }

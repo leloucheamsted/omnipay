@@ -1,8 +1,14 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:omnipay/routes/app_routes.enum.dart';
 
 class AuthBloc with ChangeNotifier {
+  // validate loading
+  late bool _isLoading;
+  bool get isLoading => _isLoading;
+
   // phone number control
   late String _phoneNumberText;
   String get phoneNumberText => _phoneNumberText;
@@ -45,6 +51,7 @@ class AuthBloc with ChangeNotifier {
   }
 
   AuthBloc() {
+    _isLoading = false;
     _phoneNumberText = "";
     _isValideFirstName = true;
     _isValidLastName = true;
@@ -57,6 +64,7 @@ class AuthBloc with ChangeNotifier {
 
   // function verification phone number
   phoneNumberVerification() {
+    // showLoadingAnimation();
     if (phoneNumberText == "" ||
         phoneNumberText[0] != '6' ||
         phoneNumberText.length < 9) {
@@ -80,6 +88,11 @@ class AuthBloc with ChangeNotifier {
     notifyListeners();
   }
 
+  showLoadingAnimation() {
+    _isLoading = !_isLoading;
+    notifyListeners();
+  }
+
   namwVerification() {
     if (_firstName.isEmpty && _lastName.isEmpty) {
       _isValideFirstName = false;
@@ -99,5 +112,11 @@ class AuthBloc with ChangeNotifier {
       log("success : valid input  form");
     }
     notifyListeners();
+  }
+
+  goOtpPage() {
+    showLoadingAnimation();
+    Get.toNamed(AppRoute.otp.pathAsChild);
+    showLoadingAnimation();
   }
 }

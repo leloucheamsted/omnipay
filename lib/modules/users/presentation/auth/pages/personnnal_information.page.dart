@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widget.dart';
@@ -7,7 +5,6 @@ import 'package:omnipay/modules/common/widget.dart';
 import 'package:omnipay/modules/users/presentation/auth/bloc/auth_bloc.dart';
 import 'package:omnipay/modules/users/presentation/auth/pages/ui/input_name.dart'
     as np;
-import 'package:omnipay/modules/users/presentation/auth/pages/ui/input_number.dart';
 import 'package:omnipay/modules/users/presentation/auth/pages/ui/pricacy_policy_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -59,7 +56,7 @@ class PersonnalInformationPage extends StatelessWidget {
                             lastNamController.text;
                         context.read<AuthBloc>().namwVerification();
                       },
-                      widget: Text('data')),
+                      widget: const Text('data')),
                 ],
               ),
             ),
