@@ -12,6 +12,7 @@ class RechargeLoadingPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: PaletteColor.greyLight,
       appBar: AppBar(
+          automaticallyImplyLeading: false,
           toolbarHeight: LayoutConstants.appBarSize,
           flexibleSpace: const BlanckAppBar()),
       body: Padding(

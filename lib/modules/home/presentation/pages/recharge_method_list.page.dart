@@ -17,6 +17,7 @@ class RechargeMethodListPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: PaletteColor.greyLight,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         toolbarHeight: LayoutConstants.appBarSize,
         flexibleSpace: BackButtonWithTitleAppBar(
           backEvent: (() {}),

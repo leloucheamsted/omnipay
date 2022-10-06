@@ -1,24 +1,24 @@
 enum AppRoute {
 /* Authentification  module part */
   auth("/"),
-  otp("/auth/otp"),
+  otp("/auth/otp/"),
   userCreate("/user/create"),
-  notif("/notif"),
+  notif("/notif/"),
 
 /* Home */
-  home("/home"),
-  methodList("/method"),
-  rLoading("/recharge/loading"),
-  tLoading("/transfer/loading"),
+  home("/home/"),
+  methodList("/method/"),
+  rLoading("/recharge/loading/"),
+  tLoading("/transfer/loading/"),
 
 /* Cards */
-  cardEmpty("/card/empty"),
-  newCard("/new/card"),
-  cardConfirmation("/card/confirm"),
-  virtualCard("/virtual/card"),
+  cardEmpty("/card/empty/"),
+  newCard("/new/card/"),
+  cardConfirmation("/card/confirm/"),
+  virtualCard("/virtual/card/"),
 
 /* Settingd */
-  userEdit("/user/edit"),
+  userEdit("/user/edi/t"),
   ;
 
   String get pathAsChild {

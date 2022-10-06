@@ -16,6 +16,7 @@ class AddAnotherCardPage extends StatelessWidget {
       resizeToAvoidBottomInset: true,
       backgroundColor: PaletteColor.greyLight,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         toolbarHeight: LayoutConstants.appBarSize,
         flexibleSpace: AppBarRightButton(
           title: 'My cards', rightEvent: () {}, rigthWidget: _rightWidget(),

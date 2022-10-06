@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:omnipay/modules/navigation/presentation/nav_bar.page.dart';
 import 'package:omnipay/routes/app_routes.enum.dart';
 
 class AuthBloc with ChangeNotifier {
@@ -84,6 +85,7 @@ class AuthBloc with ChangeNotifier {
     } else {
       log('success: valid otp code $otpCode');
       _isValidOtp = true;
+      goUserCreatePage();
     }
     notifyListeners();
   }
@@ -93,7 +95,7 @@ class AuthBloc with ChangeNotifier {
     notifyListeners();
   }
 
-  namwVerification() {
+  nameVerification() {
     if (_firstName.isEmpty && _lastName.isEmpty) {
       _isValideFirstName = false;
       _isValidLastName = false;
@@ -109,7 +111,9 @@ class AuthBloc with ChangeNotifier {
     } else {
       _isValidLastName = true;
       _isValideFirstName = true;
+
       log("success : valid input  form");
+      goNotifpage();
     }
     notifyListeners();
   }
@@ -118,5 +122,18 @@ class AuthBloc with ChangeNotifier {
     showLoadingAnimation();
     Get.toNamed(AppRoute.otp.pathAsChild);
     showLoadingAnimation();
+  }
+
+  goUserCreatePage() {
+    log("info: go to user insert name and subname page");
+    Get.toNamed(AppRoute.userCreate.pathAsChild);
+  }
+
+  goNotifpage() {
+    Get.toNamed('/notif');
+  }
+
+  activateNotification() {
+    Get.offAll(() => const NavBarPage());
   }
 }

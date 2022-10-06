@@ -15,6 +15,7 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: PaletteColor.greyLight,
       appBar: AppBar(
+          automaticallyImplyLeading: false,
           toolbarHeight: LayoutConstants.appBarSize,
           flexibleSpace: AppBarRightButton(
             //color: PaletteColor.white,
@@ -57,15 +58,18 @@ class SettingsPage extends StatelessWidget {
   }
 
   Widget _rightChild() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SvgPicture.asset(IconsConstants.helpcircleIcon),
-        const SizedBox(
-          width: LayoutConstants.spaceS,
-        ),
-        const SubTitle4(content: 'Help', color: PaletteColor.hinner),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: LayoutConstants.paddingS),
+      child: Row(
+        children: [
+          SvgPicture.asset(IconsConstants.helpcircleIcon,
+              color: PaletteColor.dark),
+          const SizedBox(
+            width: LayoutConstants.spaceS,
+          ),
+          const SubTitle4(content: 'Help', color: PaletteColor.hinner),
+        ],
+      ),
     );
   }
 }

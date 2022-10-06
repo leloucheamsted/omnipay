@@ -20,6 +20,7 @@ class _OtpPageState extends State<OtpPage> {
     return Scaffold(
       backgroundColor: PaletteColor.greyLight,
       appBar: AppBar(
+          automaticallyImplyLeading: false,
           toolbarHeight: LayoutConstants.appBarSize / 2,
           flexibleSpace: ButtonAppBar(
             backEvent: () {},
@@ -53,9 +54,6 @@ class _OtpPageState extends State<OtpPage> {
             ContinuButton(
                 event: () {
                   context.read<AuthBloc>().otpCodeVerification();
-                  //if (context.read<AuthBloc>().isValidNumber == true) {
-                  // privacyPolicy(context);
-                  //  }
                 },
                 widget: const Text('data')),
             const SizedBox(

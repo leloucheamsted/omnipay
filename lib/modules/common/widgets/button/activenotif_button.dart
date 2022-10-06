@@ -12,17 +12,12 @@ class ActiveNotifButton extends StatefulWidget {
   State<ActiveNotifButton> createState() => _ActiveNotifButtonState();
 }
 
-class _ActiveNotifButtonState extends State<ActiveNotifButton>
-    with SingleTickerProviderStateMixin {
+class _ActiveNotifButtonState extends State<ActiveNotifButton> {
   late AnimationController controller;
 
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(vsync: this);
-
-    controller.repeat(
-        min: 0.0, max: 1.0, period: const Duration(milliseconds: 12));
   }
 
   @override

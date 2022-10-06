@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widget.dart';
 import 'package:omnipay/modules/common/widgets/appbar/blank_app_bar.dart';
+import 'package:omnipay/modules/users/presentation/auth/bloc/auth_bloc.dart';
+import 'package:provider/provider.dart';
 
 class NotificationPermissionPage extends StatelessWidget {
   const NotificationPermissionPage({super.key});
@@ -11,6 +13,7 @@ class NotificationPermissionPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: PaletteColor.greyLight,
       appBar: AppBar(
+          automaticallyImplyLeading: false,
           toolbarHeight: LayoutConstants.appBarSize,
           flexibleSpace: const BlanckAppBar()),
       body: Padding(
@@ -38,7 +41,11 @@ class NotificationPermissionPage extends StatelessWidget {
                 ],
               ),
             ),
-            ActiveNotifButton(event: () {}, widget: const Text(''))
+            ActiveNotifButton(
+                event: () {
+                  context.read<AuthBloc>().activateNotification();
+                },
+                widget: const Text(''))
           ],
         ),
       ),

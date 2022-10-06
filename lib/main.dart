@@ -21,7 +21,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -59,30 +58,24 @@ class MyApp extends StatelessWidget {
               name: AppRoute.userCreate.pathAsChild,
               page: () => const PersonnalInformationPage()),
           GetPage(
-              name: AppRoute.notif.pathAsChild,
-              page: () => const NotificationPermissionPage()),
+              name: '/notif', page: () => const NotificationPermissionPage()),
+          GetPage(name: '/home', page: () => const NavBarPage()),
+          GetPage(name: '/new/card/', page: () => const CardCreation()),
           GetPage(
-              name: AppRoute.home.pathAsChild, page: () => const NavBarPage()),
-          GetPage(
-              name: AppRoute.newCard.pathAsChild,
-              page: () => const CardCreation()),
-          GetPage(
-              name: AppRoute.virtualCard.pathAsChild,
+              name: "/virtual/card/",
               page: () => const VirtualCardCreationPage()),
           GetPage(
-              name: AppRoute.tLoading.pathAsChild,
+              name: "/transfer/loading/",
               page: () => const TransferReloadingPage()),
           GetPage(
-              name: AppRoute.rLoading.pathAsChild,
+              name: "/recharge/loading/",
               page: () => const RechargeLoadingPage()),
+          GetPage(name: "/method/", page: () => const RechargeMethodListPage()),
           GetPage(
-              name: AppRoute.methodList.pathAsChild,
-              page: () => const RechargeMethodListPage()),
-          GetPage(
-              name: AppRoute.cardConfirmation.pathAsChild,
+              name: "/card/confirm/",
               page: () => const CreationCardConfirmationPage()),
-          //  RedirectRoute('/redirect', to: '/home')
         ],
+        initialRoute: '/home',
       ),
     );
   }

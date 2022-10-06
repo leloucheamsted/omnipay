@@ -21,7 +21,7 @@ class IconCustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       borderRadius: BorderRadius.circular(LayoutConstants.radiusS), // needed
       splashColor: PaletteColor.primaryLight,
       child: Ink(

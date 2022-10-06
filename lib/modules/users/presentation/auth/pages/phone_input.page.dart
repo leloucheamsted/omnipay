@@ -17,6 +17,7 @@ class PhoneInputPage extends StatelessWidget {
       backgroundColor: PaletteColor.white,
       appBar: AppBar(
           elevation: 0,
+          automaticallyImplyLeading: false,
           toolbarHeight: LayoutConstants.appBarSize,
           flexibleSpace: const TextAppBar(
             color: PaletteColor.white,
