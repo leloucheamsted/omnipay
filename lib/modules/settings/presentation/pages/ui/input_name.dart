@@ -4,11 +4,11 @@ import 'package:omnipay/modules/common/widgets/textfield/text_field_container.da
 import 'package:omnipay/modules/users/presentation/auth/bloc/auth_bloc.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../common/widget.dart';
+import '../../../../common/widget.dart';
+import '../../../bloc/settings_bloc.dart';
 
 TextEditingController firstNameController = TextEditingController();
 TextEditingController lastNamController = TextEditingController();
-
 void clearInputName() {
   firstNameController.clear();
   lastNamController.clear();
@@ -22,7 +22,7 @@ class InputName extends StatelessWidget {
     return Column(
       children: [
         TextFielContainer(
-            showchild: !context.watch<AuthBloc>().isValidFirstName,
+            showchild: !context.watch<SettingsBloc>().isValidFirstName,
             errorMessage: 'errorMessage',
             alignment: Alignment.center,
             typeInfo: TypeInfo.error,
@@ -37,7 +37,7 @@ class InputName extends StatelessWidget {
           height: LayoutConstants.spaceM,
         ),
         TextFielContainer(
-            showchild: !context.watch<AuthBloc>().isValidLastName,
+            showchild: !context.watch<SettingsBloc>().isValidLastName,
             errorMessage: 'errorMessage',
             alignment: Alignment.center,
             typeInfo: TypeInfo.error,

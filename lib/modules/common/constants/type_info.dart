@@ -7,3 +7,8 @@ enum StatutPopup {
   danger,
   succes,
 }
+
+enum PushType {
+  error,
+  success,
+}

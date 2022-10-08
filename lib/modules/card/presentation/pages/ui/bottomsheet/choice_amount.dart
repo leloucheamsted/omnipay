@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:omnipay/modules/common/constants/layout_constants.dart';
 import 'package:omnipay/modules/common/constants/palette_color.dart';
@@ -21,14 +23,20 @@ class ChoiceAmount extends StatelessWidget {
   }
 
   Widget _amountWidget(String amount) {
-    return Container(
-      alignment: Alignment.center,
-      height: LayoutConstants.btnHeight,
-      width: width,
-      decoration: BoxDecoration(
-          color: PaletteColor.greyLight, // ORIGINAL COLOR IS GRAYLIGHT
-          borderRadius: BorderRadius.circular(LayoutConstants.radiusS)),
-      child: BodyText2(content: 'FCFA $amount', color: PaletteColor.dark),
+    return GestureDetector(
+      onTap: () {
+        log("info: $amount refill has been selected");
+        // final output = amount.replaceAll(RegExp(","), '');
+      },
+      child: Container(
+        alignment: Alignment.center,
+        height: LayoutConstants.btnHeight,
+        width: width,
+        decoration: BoxDecoration(
+            color: PaletteColor.greyLight, // ORIGINAL COLOR IS GRAYLIGHT
+            borderRadius: BorderRadius.circular(LayoutConstants.radiusS)),
+        child: BodyText2(content: 'FCFA $amount', color: PaletteColor.dark),
+      ),
     );
   }
 }

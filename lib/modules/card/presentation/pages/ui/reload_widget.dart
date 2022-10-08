@@ -1,23 +1,30 @@
+import 'dart:developer';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:omnipay/modules/card/presentation/pages/ui/bottomsheet/choice_amount.dart';
+import 'package:omnipay/modules/card/bloc/cards_bloc.dart';
+import 'package:omnipay/modules/card/presentation/pages/ui/push_notification.dart';
 import 'package:omnipay/modules/common/widget.dart';
 import 'package:omnipay/modules/common/widgets/textfield/text_field_container.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../common/constants/constants.dart';
 import '../../../../common/widgets/button/icontinue_button.dart';
+
+TextEditingController amountController = TextEditingController();
 
 class ReloadWidget extends StatelessWidget {
   const ReloadWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController amountController = TextEditingController();
-
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Padding(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Container(
             decoration: const BoxDecoration(
               color: PaletteColor.white,
               borderRadius: BorderRadius.only(
@@ -30,17 +37,23 @@ class ReloadWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  BottomSheetHeader(onClose: () {}, title: 'Reload'),
+                  BottomSheetHeader(
+                      onClose: () {
+                        closeReloadView(context);
+                      },
+                      title: 'Reload'),
                   const SizedBox(
                     height: LayoutConstants.spaceL,
                   ),
                   TextFielContainer(
-                    showchild: false,
+                    showchild: !context.watch<CardsBloc>().isValidAmountR,
                     errorMessage: "errorMessage",
                     alignment: Alignment.centerLeft,
-                    typeInfo: TypeInfo.message,
+                    typeInfo: !context.watch<CardsBloc>().isValidAmountR
+                        ? TypeInfo.error
+                        : TypeInfo.message,
                     infoWidget: const ErrorText(
-                        content: 'Enter your last name here.',
+                        content: 'Insufficient balance',
                         color: PaletteColor.danger),
                     messageWidget: const ErrorText(
                         content: 'Min: FCFA 5,000 - Max: 50,000',
@@ -53,9 +66,7 @@ class ReloadWidget extends StatelessWidget {
                   const SizedBox(
                     height: LayoutConstants.spaceL,
                   ),
-                  ChoiceAmount(
-                      width: (MediaQuery.of(context).size.width - 60) / 3,
-                      amount: '5,000'),
+                  _choiceAmount((MediaQuery.of(context).size.width - 60) / 3),
                   const SizedBox(
                     height: LayoutConstants.spaceL,
                   ),
@@ -63,8 +74,43 @@ class ReloadWidget extends StatelessWidget {
                 ],
               ),
             ),
-          )
-        ],
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget _choiceAmount(double width) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        _amountWidget('5,000', width),
+        _amountWidget('10,000', width),
+        _amountWidget('15,000', width),
+      ],
+    );
+  }
+
+  void closeReloadView(context) {
+    log("info: close reload card amount pop");
+    Navigator.pop(context);
+  }
+
+  Widget _amountWidget(String amount, double width) {
+    return GestureDetector(
+      onTap: () {
+        log("info: $amount refill card  has been selected");
+        final output = amount.replaceAll(RegExp(','), '');
+        amountController.text = int.parse(output).toString();
+      },
+      child: Container(
+        alignment: Alignment.center,
+        height: LayoutConstants.btnHeight,
+        width: width,
+        decoration: BoxDecoration(
+            color: PaletteColor.greyLight, // ORIGINAL COLOR IS GRAYLIGHT
+            borderRadius: BorderRadius.circular(LayoutConstants.radiusS)),
+        child: BodyText2(content: 'FCFA $amount', color: PaletteColor.dark),
       ),
     );
   }
@@ -73,16 +119,27 @@ class ReloadWidget extends StatelessWidget {
     return InkWell(
         borderRadius: BorderRadius.circular(LayoutConstants.radiusS),
         splashColor: PaletteColor.white,
-        //hoverColor: PaletteColor.white,
-        onTap: () {},
+        onTap: () {
+          ScaffoldMessenger.of(context).showSnackBar(pushReloading);
+          // ignore: curly_braces_in_flow_control_structures
+          // if (amountController.text.isNotEmpty) if (context
+          //         .read<CardsBloc>()
+          //         .verifyAmount(int.parse(amountController.text)) ==
+          //     true) {
+          //   if (kDebugMode) {
+          //     print(context
+          //         .read<CardsBloc>()
+          //         .verifyAmount(int.parse(amountController.text)));
+          //   }
+          //   Navigator.pop(context);
+          // }
+        },
         child: Container(
             decoration: BoxDecoration(
                 color: PaletteColor.primary,
                 borderRadius: BorderRadius.circular(LayoutConstants.radiusS)),
             child: IContinueButton(
-              widget:
-                  //;
-                  Text(
+              widget: Text(
                 'Continue',
                 style: TextStyle(
                   color: PaletteColor.white,

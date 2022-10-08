@@ -9,16 +9,20 @@ class CardDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _cardDetails(),
-          const SizedBox(
-            height: LayoutConstants.spaceM,
-          ),
-          _buildingAddress()
-        ]);
+    return Expanded(
+      child: SingleChildScrollView(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _cardDetails(),
+              const SizedBox(
+                height: LayoutConstants.spaceM,
+              ),
+              _buildingAddress()
+            ]),
+      ),
+    );
   }
 
   Widget _cardDetails() {

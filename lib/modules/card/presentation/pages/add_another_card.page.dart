@@ -30,27 +30,19 @@ class AddAnotherCardPage extends StatelessWidget {
             LayoutConstants.paddingM,
             LayoutConstants.paddingZero),
         child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: const [
-                    SizedBox(
-                      height: LayoutConstants.spaceXL,
-                    ),
-                    CreditCard(),
-                    SizedBox(
-                      height: LayoutConstants.spaceM,
-                    ),
-                    ActionButtonCard(),
-                    SizedBox(
-                      height: LayoutConstants.spaceL,
-                    ),
-                    CardDetails(),
-                  ],
-                ),
-              ),
+          children: const [
+            SizedBox(
+              height: LayoutConstants.spaceXL,
             ),
+            CreditCard(),
+            SizedBox(
+              height: LayoutConstants.spaceM,
+            ),
+            ActionButtonCard(),
+            SizedBox(
+              height: LayoutConstants.spaceL,
+            ),
+            CardDetails(),
           ],
         ),
       ),

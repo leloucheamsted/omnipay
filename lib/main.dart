@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:omnipay/modules/card/bloc/cards_bloc.dart';
 import 'package:omnipay/modules/home/bloc/home_bloc.dart';
 import 'package:omnipay/modules/settings/bloc/settings_bloc.dart';
+import 'package:omnipay/modules/settings/presentation/pages/edit_profile.page.dart';
 import 'package:omnipay/modules/users/presentation/auth/bloc/auth_bloc.dart';
 import 'package:omnipay/routes/app_routes.enum.dart';
 import 'package:provider/provider.dart';
@@ -60,6 +61,7 @@ class MyApp extends StatelessWidget {
           GetPage(
               name: '/notif', page: () => const NotificationPermissionPage()),
           GetPage(name: '/home', page: () => const NavBarPage()),
+          GetPage(name: '/edit/profile', page: () => const EditProfilePage()),
           GetPage(name: '/new/card/', page: () => const CardCreation()),
           GetPage(
               name: "/virtual/card/",

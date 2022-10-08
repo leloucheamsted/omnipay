@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/settings/bloc/settings_list.dart';
 import 'package:omnipay/modules/settings/presentation/pages/ui/logout.dart';
@@ -44,7 +45,10 @@ class SettingsPage extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     ///  called from the element component of the list
                     ///  parameters: {name_of_contry,dial_code,code}
-                    return SettingsItem(settingsEntity: settingsList[index]);
+                    return GestureDetector(
+                      onTap: (() => _goItem(settingsList[index])),
+                      child: SettingsItem(settingsEntity: settingsList[index]),
+                    );
                   },
                   itemCount: settingsList.isEmpty ? 0 : settingsList.length,
                 ),
@@ -55,6 +59,13 @@ class SettingsPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _goItem(SettingsEntity item) {
+    if (item.title == "My Profile") {
+      Get.toNamed('/edit/profile');
+      print('My profile');
+    }
   }
 
   Widget _rightChild() {
