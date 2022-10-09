@@ -1,7 +1,10 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:omnipay/modules/home/presentation/pages/ui/push_notification.dart';
 
 enum TypeAction { reload, transfer }
 
@@ -13,6 +16,19 @@ class HomeBloc with ChangeNotifier {
   bool get isValidAmountR => _isValidAmountR;
   late int _amountR;
   int get amountR => _amountR;
+  setValidAmountR(bool value) {
+    _isValidAmountR = value;
+    //notifyListeners();
+  }
+
+  // loading progress
+  late bool _isLoading;
+  bool get isLoading => _isLoading;
+
+  setValidAmount(bool value) {
+    _isValidAmountR = value;
+    notifyListeners();
+  }
 
   // type actions || reload or transfer
   late String _typeAction;
@@ -31,6 +47,7 @@ class HomeBloc with ChangeNotifier {
   HomeBloc() {
     _typeAction = TypeAction.reload.name;
     _isValidAmountR = true;
+    _isLoading = false;
     _operator = Operator.mtn.name;
     _amountR = 0;
     _isValidPhoneNumber = true;
@@ -49,7 +66,7 @@ class HomeBloc with ChangeNotifier {
     notifyListeners();
   }
 
-  verifyPhoneNumber(String phoneNumber) {
+  bool verifyPhoneNumber(String phoneNumber) {
     if (phoneNumber == "" || phoneNumber[0] != '6' || phoneNumber.length < 9) {
       _isValidPhoneNumber = false;
       log('error: invalid phone number $phoneNumber');
@@ -57,7 +74,16 @@ class HomeBloc with ChangeNotifier {
       log('succes: valid phone number $phoneNumber');
       _isValidPhoneNumber = true;
     }
+    if (_isValidPhoneNumber == true) {
+      Get.back();
+      if (_typeAction == TypeAction.reload.name) {
+        Get.toNamed("/recharge/loading/");
+      } else {
+        Get.toNamed("/transfer/loading/");
+      }
+    }
     notifyListeners();
+    return _isValidPhoneNumber;
   }
 
   bool verifyAmount(int amount) {
@@ -70,6 +96,17 @@ class HomeBloc with ChangeNotifier {
     }
     notifyListeners();
     return _isValidAmountR;
+  }
+
+  changeStatus(context) {
+    _isLoading = !_isLoading;
+    Timer timer1;
+    timer1 = Timer(const Duration(milliseconds: 2000), () {
+      _isLoading = !_isLoading;
+      Get.offAllNamed('/home');
+      ScaffoldMessenger.of(context).showSnackBar(pushReloadSucces);
+    });
+    notifyListeners();
   }
   // verfi
 }

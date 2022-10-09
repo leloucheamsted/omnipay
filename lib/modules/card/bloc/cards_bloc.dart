@@ -1,24 +1,45 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:omnipay/modules/card/presentation/pages/ui/push_notification.dart';
 
 class CardsBloc with ChangeNotifier {
+  // lock and unlock card details informations
   late bool _isBlock;
   bool get isBlock => _isBlock;
 
+  // valid amount in inout amount card loading
   late bool _isValidAmountR;
   bool get isValidAmountR => _isValidAmountR;
   late int _amountR;
   int get amountR => _amountR;
 
+  // card creation loading event
+  late bool _loadingCard;
+  bool get loadingCard => _loadingCard;
+
   CardsBloc() {
     _isBlock = false;
     _isValidAmountR = true;
+    _loadingCard = false;
     _amountR = 0;
   }
 
-  changeBlockStatut() {
+  changeBlockStatut(context) {
     _isBlock = !_isBlock;
+
+    notifyListeners();
+    if (_isBlock == true) {
+      ScaffoldMessenger.of(context).showSnackBar(pushUnlock);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(pushLock);
+    }
+  }
+
+  changeLaodingStatut() {
+    _loadingCard = !_loadingCard;
     notifyListeners();
   }
 
@@ -32,5 +53,22 @@ class CardsBloc with ChangeNotifier {
     }
     notifyListeners();
     return _isValidAmountR;
+  }
+
+  creationCard(context) {
+    Timer timer1, timer2, timer3;
+    changeLaodingStatut();
+    timer1 = Timer(const Duration(milliseconds: 2000), () {
+      ScaffoldMessenger.of(context).showSnackBar(pushCardErrorCreation);
+    });
+    timer2 = Timer(const Duration(milliseconds: 4000), () {
+      ScaffoldMessenger.of(context).showSnackBar(pushCardSuccesCreation);
+
+      Get.back();
+    });
+    timer3 = Timer(const Duration(milliseconds: 6000), () {
+      Get.toNamed("/card/confirm/");
+    });
+    notifyListeners();
   }
 }

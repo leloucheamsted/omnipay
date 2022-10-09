@@ -13,24 +13,16 @@ class ContinuButton extends StatefulWidget {
   State<ContinuButton> createState() => _ContinuButtonState();
 }
 
-class _ContinuButtonState extends State<ContinuButton>
-    with SingleTickerProviderStateMixin {
+class _ContinuButtonState extends State<ContinuButton> {
   bool isLoading = false;
-  late AnimationController controller;
 
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(vsync: this);
-
-    controller.repeat(
-        min: 0.0, max: 1.0, period: const Duration(milliseconds: 12));
   }
 
   @override
   void dispose() {
-    controller.dispose();
-    //context.read<AuthBloc>().showLoadingAnimation();
     super.dispose();
   }
 

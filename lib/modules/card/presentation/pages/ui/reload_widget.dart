@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:omnipay/modules/card/bloc/cards_bloc.dart';
 import 'package:omnipay/modules/card/presentation/pages/ui/push_notification.dart';
 import 'package:omnipay/modules/common/widget.dart';
@@ -13,8 +14,20 @@ import '../../../../common/widgets/button/icontinue_button.dart';
 
 TextEditingController amountController = TextEditingController();
 
-class ReloadWidget extends StatelessWidget {
+class ReloadWidget extends StatefulWidget {
   const ReloadWidget({super.key});
+
+  @override
+  State<ReloadWidget> createState() => _ReloadWidgetState();
+}
+
+class _ReloadWidgetState extends State<ReloadWidget> {
+  bool iserror = false;
+  @override
+  void dispose() {
+    amountController.clear();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +59,11 @@ class ReloadWidget extends StatelessWidget {
                     height: LayoutConstants.spaceL,
                   ),
                   TextFielContainer(
-                    showchild: !context.watch<CardsBloc>().isValidAmountR,
+                    showchild: iserror,
                     errorMessage: "errorMessage",
                     alignment: Alignment.centerLeft,
-                    typeInfo: !context.watch<CardsBloc>().isValidAmountR
-                        ? TypeInfo.error
-                        : TypeInfo.message,
+                    typeInfo:
+                        iserror == true ? TypeInfo.error : TypeInfo.message,
                     infoWidget: const ErrorText(
                         content: 'Insufficient balance',
                         color: PaletteColor.danger),
@@ -61,6 +73,10 @@ class ReloadWidget extends StatelessWidget {
                     child: CustomTextField(
                       placeholder: 'Enter the amount to reload',
                       textController: amountController,
+                      inputFormatter: <TextInputFormatter>[
+                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                      ],
+                      textInputType: TextInputType.number,
                     ),
                   ),
                   const SizedBox(
@@ -119,21 +135,7 @@ class ReloadWidget extends StatelessWidget {
     return InkWell(
         borderRadius: BorderRadius.circular(LayoutConstants.radiusS),
         splashColor: PaletteColor.white,
-        onTap: () {
-          ScaffoldMessenger.of(context).showSnackBar(pushReloading);
-          // ignore: curly_braces_in_flow_control_structures
-          // if (amountController.text.isNotEmpty) if (context
-          //         .read<CardsBloc>()
-          //         .verifyAmount(int.parse(amountController.text)) ==
-          //     true) {
-          //   if (kDebugMode) {
-          //     print(context
-          //         .read<CardsBloc>()
-          //         .verifyAmount(int.parse(amountController.text)));
-          //   }
-          //   Navigator.pop(context);
-          // }
-        },
+        onTap: continueFunc,
         child: Container(
             decoration: BoxDecoration(
                 color: PaletteColor.primary,
@@ -149,5 +151,41 @@ class ReloadWidget extends StatelessWidget {
                 ),
               ),
             )));
+  }
+
+  void continueFunc() {
+    if (amountController.text.isEmpty) {
+      setState(() {
+        iserror = true;
+      });
+    } else {
+      if (context
+              .read<CardsBloc>()
+              .verifyAmount(int.parse(amountController.text)) ==
+          false) {
+        setState(() {
+          iserror = true;
+        });
+      } else {
+        Navigator.pop(context);
+        ScaffoldMessenger.of(context).showSnackBar(pushReloading);
+        setState(() {
+          iserror = false;
+        });
+      }
+    }
+
+    // ignore: curly_braces_in_flow_control_structures
+    // if (amountController.text.isNotEmpty) if (context
+    //         .read<CardsBloc>()
+    //         .verifyAmount(int.parse(amountController.text)) ==
+    //     true) {
+    //   if (kDebugMode) {
+    //     print(context
+    //         .read<CardsBloc>()
+    //         .verifyAmount(int.parse(amountController.text)));
+    //   }
+    //   Navigator.pop(context);
+    // }
   }
 }

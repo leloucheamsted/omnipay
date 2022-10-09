@@ -5,6 +5,7 @@ import 'package:omnipay/modules/common/widgets/button/icon_custom_button.dart';
 import 'package:provider/provider.dart';
 
 import '../../../bloc/cards_bloc.dart';
+import 'push_notification.dart';
 
 class ActionButtonCard extends StatelessWidget {
   const ActionButtonCard({super.key});
@@ -47,6 +48,6 @@ class ActionButtonCard extends StatelessWidget {
   }
 
   void blockEvent(context) {
-    Provider.of<CardsBloc>(context, listen: false).changeBlockStatut();
+    Provider.of<CardsBloc>(context, listen: false).changeBlockStatut(context);
   }
 }

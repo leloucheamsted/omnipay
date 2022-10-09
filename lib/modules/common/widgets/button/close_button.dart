@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
+import 'package:omnipay/modules/common/widgets/button/iclose_button.dart';
 import 'package:omnipay/modules/common/widgets/button/icontinue_button.dart';
 
 class ClosesButton extends StatefulWidget {
@@ -11,17 +13,10 @@ class ClosesButton extends StatefulWidget {
   State<ClosesButton> createState() => _ClosesButtonState();
 }
 
-class _ClosesButtonState extends State<ClosesButton>
-    with SingleTickerProviderStateMixin {
-  late AnimationController controller;
-
+class _ClosesButtonState extends State<ClosesButton> {
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(vsync: this);
-
-    controller.repeat(
-        min: 0.0, max: 1.0, period: const Duration(milliseconds: 12));
   }
 
   @override
@@ -30,12 +25,15 @@ class _ClosesButtonState extends State<ClosesButton>
         borderRadius: BorderRadius.circular(LayoutConstants.radiusS),
         splashColor: PaletteColor.white,
         hoverColor: PaletteColor.white,
-        onTap: widget.event,
+        onTap: () {
+          print("l");
+          Get.offAllNamed('/home');
+        },
         child: Ink(
             decoration: BoxDecoration(
                 color: PaletteColor.primary,
                 borderRadius: BorderRadius.circular(LayoutConstants.radiusS)),
-            child: IContinueButton(
+            child: ICloseButton(
               widget:
                   //;
                   Text(

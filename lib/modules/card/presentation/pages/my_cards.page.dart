@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:omnipay/modules/card/presentation/pages/ui/action_button_card.dart';
 import 'package:omnipay/modules/card/presentation/pages/ui/card_details.dart';
 import 'package:omnipay/modules/common/widget.dart';
@@ -19,7 +20,11 @@ class MyCardsPage extends StatelessWidget {
         automaticallyImplyLeading: false,
         toolbarHeight: LayoutConstants.appBarSize,
         flexibleSpace: AppBarRightButton(
-          title: 'My cards', rightEvent: () {}, rigthWidget: _rightWidget(),
+          title: 'My cards',
+          rightEvent: () {
+            Get.toNamed('/new/card/');
+          },
+          rigthWidget: _rightWidget(),
           // backEvent: () {},
         ),
       ),

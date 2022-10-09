@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:omnipay/modules/card/bloc/cards_bloc.dart';
 import 'package:omnipay/modules/card/presentation/pages/ui/cost_card.dart';
 import 'package:omnipay/modules/card/presentation/pages/ui/credit_card.dart';
+import 'package:provider/provider.dart';
 
 import '../../../common/constants/constants.dart';
 import '../../../common/widget.dart';
@@ -47,7 +49,9 @@ class VirtualCardCreationPage extends StatelessWidget {
               height: LayoutConstants.spaceM,
             ),
             GetYourCardButton(
-              event: () {},
+              event: () {
+                context.read<CardsBloc>().creationCard(context);
+              },
               widget: const Text('data'),
             ),
           ],

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widget.dart';
 import 'package:omnipay/modules/common/widgets/appbar/blank_app_bar.dart';
 import 'package:omnipay/modules/common/widgets/button/dial_button.dart';
+import 'package:omnipay/modules/home/bloc/home_bloc.dart';
+import 'package:provider/provider.dart';
+
+import 'ui/push_notification.dart';
 
 class RechargeLoadingPage extends StatelessWidget {
   const RechargeLoadingPage({super.key});
@@ -43,11 +48,13 @@ class RechargeLoadingPage extends StatelessWidget {
             ),
             Column(
               children: [
-                DialButton(event: () {}, widget: const Text('')),
+                DialButton(
+                    event: () => context.read<HomeBloc>().changeStatus(context),
+                    widget: const Text('')),
                 const SizedBox(
                   height: LayoutConstants.spaceM,
                 ),
-                _close()
+                _close(context)
               ],
             )
           ],
@@ -56,10 +63,14 @@ class RechargeLoadingPage extends StatelessWidget {
     );
   }
 
-  Widget _close() {
+  Widget _close(context) {
     return Material(
       color: Colors.white.withOpacity(0.0),
       child: InkWell(
+        onTap: (() {
+          Get.offAllNamed('/home');
+          ScaffoldMessenger.of(context).showSnackBar(pushReloadSucces);
+        }),
         borderRadius: BorderRadius.circular(LayoutConstants.radiusS),
         child: Ink(
           decoration: BoxDecoration(
@@ -73,7 +84,6 @@ class RechargeLoadingPage extends StatelessWidget {
               ]),
           child: _transfertButton(),
         ),
-        onTap: () {},
       ),
     );
   }

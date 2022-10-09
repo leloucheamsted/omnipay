@@ -72,7 +72,7 @@ class _CreditCardState extends State<CreditCard> {
             ],
           ),
         ),
-        SvgPicture.asset(IconsConstants.omnipay),
+        SvgPicture.asset(IconsConstants.paymate),
       ],
     );
   }

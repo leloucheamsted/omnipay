@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
               name: '/notif', page: () => const NotificationPermissionPage()),
           GetPage(name: '/home', page: () => const NavBarPage()),
           GetPage(name: '/edit/profile', page: () => const EditProfilePage()),
-          GetPage(name: '/new/card/', page: () => const CardCreation()),
+          GetPage(name: '/new/card/', page: () => const NewCardCreationPage()),
           GetPage(
               name: "/virtual/card/",
               page: () => const VirtualCardCreationPage()),

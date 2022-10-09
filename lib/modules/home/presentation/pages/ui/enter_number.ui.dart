@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:omnipay/modules/card/bloc/cards_bloc.dart';
 import 'package:omnipay/modules/common/widget.dart';
 import 'package:omnipay/modules/common/widgets/textfield/text_field_container.dart';
 import 'package:omnipay/modules/home/bloc/home_bloc.dart';
@@ -13,8 +14,21 @@ import '../../../../common/widgets/button/icontinue_button.dart';
 
 TextEditingController phoneController = TextEditingController();
 
-class EnterNumberWidget extends StatelessWidget {
+class EnterNumberWidget extends StatefulWidget {
   const EnterNumberWidget({super.key});
+
+  @override
+  State<EnterNumberWidget> createState() => _EnterNumberWidgetState();
+}
+
+class _EnterNumberWidgetState extends State<EnterNumberWidget> {
+  bool iserror = false;
+
+  @override
+  void dispose() {
+    phoneController.clear();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,12 +61,11 @@ class EnterNumberWidget extends StatelessWidget {
                     height: LayoutConstants.spaceL,
                   ),
                   TextFielContainer(
-                    showchild: !context.watch<HomeBloc>().isValidPhoneNumber,
+                    showchild: iserror,
                     errorMessage: "errorMessage",
                     alignment: Alignment.centerLeft,
-                    typeInfo: !context.watch<HomeBloc>().isValidPhoneNumber
-                        ? TypeInfo.error
-                        : TypeInfo.message,
+                    typeInfo:
+                        iserror == true ? TypeInfo.error : TypeInfo.message,
                     infoWidget: const ErrorText(
                         content: 'Enter a valid mobile money number.',
                         color: PaletteColor.danger),
@@ -101,9 +114,7 @@ class EnterNumberWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(LayoutConstants.radiusS),
         splashColor: PaletteColor.white,
         //hoverColor: PaletteColor.white,
-        onTap: () {
-          context.read<HomeBloc>().verifyPhoneNumber(phoneController.text);
-        },
+        onTap: continueFunc,
         child: Container(
             decoration: BoxDecoration(
                 color: PaletteColor.primary,
@@ -121,5 +132,24 @@ class EnterNumberWidget extends StatelessWidget {
                 ),
               ),
             )));
+  }
+
+  void continueFunc() {
+    if (phoneController.text.isEmpty) {
+      setState(() {
+        iserror = true;
+      });
+    } else {
+      if (context.read<HomeBloc>().verifyPhoneNumber(phoneController.text) ==
+          false) {
+        setState(() {
+          iserror = true;
+        });
+      } else {
+        setState(() {
+          iserror = false;
+        });
+      }
+    }
   }
 }

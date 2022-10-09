@@ -41,7 +41,11 @@ class CreationCardConfirmationPage extends StatelessWidget {
                 ],
               ),
             ),
-            ClosesButton(event: () {}, widget: const Text(''))
+            ClosesButton(
+                event: () {
+                  const RouteSettings(name: '/home');
+                },
+                widget: const Text(''))
           ],
         ),
       ),

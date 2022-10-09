@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:omnipay/modules/common/widget.dart';
@@ -14,11 +13,30 @@ import '../recharge_method_list.page.dart';
 
 TextEditingController amountController = TextEditingController();
 
-class ReloadWidget extends StatelessWidget {
+class ReloadWidget extends StatefulWidget {
   const ReloadWidget({super.key});
 
   @override
+  State<ReloadWidget> createState() => _ReloadWidgetState();
+}
+
+class _ReloadWidgetState extends State<ReloadWidget> {
+  bool iserror = false;
+  @override
+  void initState() {
+    context.read<HomeBloc>().setValidAmountR(true);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    amountController.clear();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // context.read<HomeBloc>().setValidAmount = true;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -48,12 +66,11 @@ class ReloadWidget extends StatelessWidget {
                     height: LayoutConstants.spaceL,
                   ),
                   TextFielContainer(
-                    showchild: !context.watch<HomeBloc>().isValidAmountR,
+                    showchild: iserror,
                     errorMessage: "errorMessage",
                     alignment: Alignment.centerLeft,
-                    typeInfo: !context.watch<HomeBloc>().isValidAmountR
-                        ? TypeInfo.error
-                        : TypeInfo.message,
+                    typeInfo:
+                        iserror == true ? TypeInfo.error : TypeInfo.message,
                     infoWidget: const ErrorText(
                         content: 'Enter your last name here.',
                         color: PaletteColor.danger),
@@ -129,25 +146,7 @@ class ReloadWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(LayoutConstants.radiusS),
         splashColor: PaletteColor.white,
         //hoverColor: PaletteColor.white,
-        onTap: () {
-          // ignore: curly_braces_in_flow_control_structures
-          if (amountController.text.isNotEmpty) if (context
-                  .read<HomeBloc>()
-                  .verifyAmount(int.parse(amountController.text)) ==
-              true) {
-            if (kDebugMode) {
-              print(context
-                  .read<HomeBloc>()
-                  .verifyAmount(int.parse(amountController.text)));
-            }
-            Navigator.pop(context);
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const RechargeMethodListPage()));
-            // MaterialPageRoute(builder: (context) => RechargeMethodListPage());
-          }
-        },
+        onTap: continueFunc,
         child: Container(
             decoration: BoxDecoration(
                 color: PaletteColor.primary,
@@ -165,5 +164,32 @@ class ReloadWidget extends StatelessWidget {
                 ),
               ),
             )));
+  }
+
+  void continueFunc() {
+    if (amountController.text.isEmpty) {
+      setState(() {
+        iserror = true;
+      });
+    } else {
+      if (context
+              .read<HomeBloc>()
+              .verifyAmount(int.parse(amountController.text)) ==
+          false) {
+        setState(() {
+          iserror = true;
+        });
+      } else {
+        setState(() {
+          iserror = false;
+        });
+        Navigator.pop(context);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const RechargeMethodListPage()));
+        MaterialPageRoute(builder: (context) => RechargeMethodListPage());
+      }
+    }
   }
 }

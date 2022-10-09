@@ -24,7 +24,7 @@ class IconsConstants {
   static const String settingsIcon = 'assets/icons/settings.svg';
   static const String userIcon = 'assets/icons/user.svg';
   static const String cloudIcon = 'assets/icons/cloud.svg';
-  static const String omnipay = 'assets/icons/omnipay.svg';
+  static const String paymate = 'assets/icons/paymate.svg';
   static const String shareIcon = 'assets/icons/share.svg';
   static const String spinner = 'assets/icons/spinner.svg';
   static const String users = 'assets/icons/users.svg';

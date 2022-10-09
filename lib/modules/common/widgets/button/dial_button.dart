@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widgets/button/icontinue_button.dart';
+import 'package:omnipay/modules/home/bloc/home_bloc.dart';
+import 'package:provider/provider.dart';
 
 class DialButton extends StatefulWidget {
   final VoidCallback event;
@@ -11,22 +13,14 @@ class DialButton extends StatefulWidget {
   State<DialButton> createState() => _DialButtonState();
 }
 
-class _DialButtonState extends State<DialButton>
-    with SingleTickerProviderStateMixin {
-  late AnimationController controller;
-
+class _DialButtonState extends State<DialButton> {
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(vsync: this);
-
-    controller.repeat(
-        min: 0.0, max: 1.0, period: const Duration(milliseconds: 12));
   }
 
   @override
   void dispose() {
-    controller.dispose();
     super.dispose();
   }
 
@@ -42,17 +36,23 @@ class _DialButtonState extends State<DialButton>
                 color: PaletteColor.primary,
                 borderRadius: BorderRadius.circular(LayoutConstants.radiusS)),
             child: IContinueButton(
-              widget:
-                  //;
-                  Text(
-                'Dial manually',
-                style: TextStyle(
-                  color: PaletteColor.white,
-                  fontFamily: FontsFamilyConstants.fontRegular,
-                  fontWeight: FontWeight.w400,
-                  fontSize: FontsSizeConstants.title3,
-                ),
-              ),
+              widget: context.watch<HomeBloc>().isLoading == true
+                  ? const SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                        strokeWidth: 1.5,
+                      ))
+                  : Text(
+                      'Dial manually',
+                      style: TextStyle(
+                        color: PaletteColor.white,
+                        fontFamily: FontsFamilyConstants.fontRegular,
+                        fontWeight: FontWeight.w400,
+                        fontSize: FontsSizeConstants.title3,
+                      ),
+                    ),
             )));
   }
 }

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:omnipay/modules/card/presentation/pages/ui/circle_icon.dart';
 import 'package:omnipay/modules/common/widget.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../common/constants/constants.dart';
+import '../../../bloc/cards_bloc.dart';
 
 class CardCreation extends StatelessWidget {
   const CardCreation({
@@ -14,11 +17,24 @@ class CardCreation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _cardLayout(
-            IconsConstants.cloudIcon,
-            'FCFA 10,000',
-            'Virtall debit Card',
-            'A digital card for your digital life. You can use your omnipay card to make online purchases wherever MasterCard are accepted.'),
+        GestureDetector(
+          onTap: goNextStep,
+          child: Container(
+            child: Stack(
+              children: [
+                _cardLayout(
+                    IconsConstants.cloudIcon,
+                    'FCFA 10,000',
+                    'Virtall debit Card',
+                    'A digital card for your digital life. You can use your omnipay card to make online purchases wherever MasterCard are accepted.'),
+                SizedBox(
+                    child: context.watch<CardsBloc>().loadingCard == true
+                        ? loadingCard()
+                        : null)
+              ],
+            ),
+          ),
+        ),
         const SizedBox(
           height: LayoutConstants.spaceM,
         ),
@@ -29,6 +45,52 @@ class CardCreation extends StatelessWidget {
             'A debit card that allows you to pay online whenever and wherever you want, pay in stores and withdraw money from ATMs.'),
       ],
     );
+  }
+
+  Widget loadingCard() {
+    return Container(
+        alignment: Alignment.center,
+        width: double.infinity,
+        height: 180,
+        decoration: BoxDecoration(
+            color: PaletteColor.dark.withOpacity(0.7),
+            borderRadius: BorderRadius.circular(LayoutConstants.radiusM),
+            boxShadow: const <BoxShadow>[
+              BoxShadow(
+                  color: Colors.white10,
+                  blurRadius: 30.0,
+                  offset: Offset(0.0, 0.75))
+            ]),
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(
+                  width: 16,
+                  height: 16,
+                  child: CircularProgressIndicator(
+                    color: PaletteColor.primary,
+                    strokeWidth: 1.5,
+                  )),
+              const SizedBox(
+                height: LayoutConstants.spaceM,
+              ),
+              Flexible(
+                child: Text(
+                  'Please wait while we create your card',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: PaletteColor.white,
+                    fontFamily: FontsFamilyConstants.fontRegular,
+                    fontWeight: FontWeight.w400,
+                    fontSize: FontsSizeConstants.subtitle1,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 
   Widget _cardLayout(String icon, pricing, title, detaisl) {
@@ -110,5 +172,9 @@ class CardCreation extends StatelessWidget {
             color: PaletteColor.greyDark),
       ),
     );
+  }
+
+  void goNextStep() {
+    Get.toNamed("/virtual/card/");
   }
 }
