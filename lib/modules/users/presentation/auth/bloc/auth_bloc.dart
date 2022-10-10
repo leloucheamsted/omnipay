@@ -3,7 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:omnipay/modules/navigation/presentation/nav_bar.page.dart';
-import 'package:omnipay/routes/app_routes.enum.dart';
+
+import '../../../../../routes/app_pages.dart';
 
 class AuthBloc with ChangeNotifier {
   // validate loading
@@ -120,17 +121,17 @@ class AuthBloc with ChangeNotifier {
 
   goOtpPage() {
     showLoadingAnimation();
-    Get.toNamed(AppRoute.otp.pathAsChild);
+    Get.toNamed(Routes.OTP);
     showLoadingAnimation();
   }
 
   goUserCreatePage() {
     log("info: go to user insert name and subname page");
-    Get.toNamed(AppRoute.userCreate.pathAsChild);
+    Get.toNamed(Routes.USERCREATE);
   }
 
   goNotifpage() {
-    Get.toNamed('/notif');
+    Get.toNamed(Routes.NOTIF);
   }
 
   activateNotification() {

@@ -19,20 +19,18 @@ class CardCreation extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: goNextStep,
-          child: Container(
-            child: Stack(
-              children: [
-                _cardLayout(
-                    IconsConstants.cloudIcon,
-                    'FCFA 10,000',
-                    'Virtall debit Card',
-                    'A digital card for your digital life. You can use your omnipay card to make online purchases wherever MasterCard are accepted.'),
-                SizedBox(
-                    child: context.watch<CardsBloc>().loadingCard == true
-                        ? loadingCard()
-                        : null)
-              ],
-            ),
+          child: Stack(
+            children: [
+              _cardLayout(
+                  IconsConstants.cloudIcon,
+                  'FCFA 10,000',
+                  'Virtall debit Card',
+                  'A digital card for your digital life. You can use your omnipay card to make online purchases wherever MasterCard are accepted.'),
+              SizedBox(
+                  child: context.watch<CardsBloc>().loadingCard == true
+                      ? loadingCard()
+                      : null)
+            ],
           ),
         ),
         const SizedBox(

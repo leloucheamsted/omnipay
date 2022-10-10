@@ -7,6 +7,7 @@ import 'package:omnipay/modules/common/widgets/button/dial_button.dart';
 import 'package:omnipay/modules/home/bloc/home_bloc.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../routes/app_pages.dart';
 import 'ui/push_notification.dart';
 
 class RechargeLoadingPage extends StatelessWidget {
@@ -68,7 +69,7 @@ class RechargeLoadingPage extends StatelessWidget {
       color: Colors.white.withOpacity(0.0),
       child: InkWell(
         onTap: (() {
-          Get.offAllNamed('/home');
+          Get.offAllNamed(Routes.HOME);
           ScaffoldMessenger.of(context).showSnackBar(pushReloadSucces);
         }),
         borderRadius: BorderRadius.circular(LayoutConstants.radiusS),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widgets/button/iclose_button.dart';
-import 'package:omnipay/modules/common/widgets/button/icontinue_button.dart';
 
 class ClosesButton extends StatefulWidget {
   final VoidCallback event;
@@ -26,7 +25,6 @@ class _ClosesButtonState extends State<ClosesButton> {
         splashColor: PaletteColor.white,
         hoverColor: PaletteColor.white,
         onTap: () {
-          print("l");
           Get.offAllNamed('/home');
         },
         child: Ink(

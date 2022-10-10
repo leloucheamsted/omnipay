@@ -188,7 +188,7 @@ class _ReloadWidgetState extends State<ReloadWidget> {
             context,
             MaterialPageRoute(
                 builder: (context) => const RechargeMethodListPage()));
-        MaterialPageRoute(builder: (context) => RechargeMethodListPage());
+        MaterialPageRoute(builder: (context) => const RechargeMethodListPage());
       }
     }
   }

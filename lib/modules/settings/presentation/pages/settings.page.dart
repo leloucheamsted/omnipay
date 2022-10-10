@@ -5,6 +5,7 @@ import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/settings/bloc/settings_list.dart';
 import 'package:omnipay/modules/settings/presentation/pages/ui/logout.dart';
 
+import '../../../../routes/app_pages.dart';
 import '../../../common/widget.dart';
 import 'ui/settings_item.dart';
 
@@ -63,8 +64,7 @@ class SettingsPage extends StatelessWidget {
 
   void _goItem(SettingsEntity item) {
     if (item.title == "My Profile") {
-      Get.toNamed('/edit/profile');
-      print('My profile');
+      Get.toNamed(Routes.EDITPROFILE);
     }
   }
 

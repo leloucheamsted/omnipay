@@ -4,6 +4,8 @@ import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widget.dart';
 import 'package:omnipay/modules/common/widgets/appbar/blank_app_bar.dart';
 
+import '../../../../routes/app_pages.dart';
+
 class TransferReloadingPage extends StatelessWidget {
   const TransferReloadingPage({super.key});
 
@@ -49,7 +51,7 @@ class TransferReloadingPage extends StatelessWidget {
     return Material(
       color: Colors.white.withOpacity(0.0),
       child: InkWell(
-        onTap: (() => Get.offAllNamed('/home')),
+        onTap: (() => Get.offAllNamed(Routes.HOME)),
         borderRadius: BorderRadius.circular(LayoutConstants.radiusS),
         child: Ink(
           decoration: BoxDecoration(

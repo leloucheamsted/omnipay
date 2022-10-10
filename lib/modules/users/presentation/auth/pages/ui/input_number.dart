@@ -75,7 +75,7 @@ class _InputNumberState extends State<InputNumber> {
 
   Widget _buildPhoneInputFiled() {
     return TextField(
-      autofocus: true,
+      autofocus: false,
       // controller: _phoneTxtCtrl,
       onChanged: ((value) {
         context.read<AuthBloc>().setPhoneNumber = value;

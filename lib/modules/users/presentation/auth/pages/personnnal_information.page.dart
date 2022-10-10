@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widget.dart';
 
@@ -9,7 +8,6 @@ import 'package:omnipay/modules/users/presentation/auth/pages/ui/input_name.dart
 import 'package:omnipay/modules/users/presentation/auth/pages/ui/pricacy_policy_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../routes/app_routes.enum.dart';
 import 'ui/input_name.dart';
 
 class PersonnalInformationPage extends StatelessWidget {
@@ -50,11 +48,13 @@ class PersonnalInformationPage extends StatelessWidget {
                   ),
                   ContinuButton(
                       event: () {
+                        FocusScope.of(context).unfocus();
+
                         context.read<AuthBloc>().setFirstName =
                             firstNameController.text;
                         context.read<AuthBloc>().setLastName =
                             lastNamController.text;
-                        Get.toNamed(AppRoute.notif.pathAsChild);
+                        // Get.toNamed(AppRoute.notif.pathAsChild);
 
                         context.read<AuthBloc>().nameVerification();
                       },

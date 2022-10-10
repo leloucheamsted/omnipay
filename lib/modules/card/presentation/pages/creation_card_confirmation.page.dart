@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../../routes/app_pages.dart';
 import '../../../common/constants/constants.dart';
 import '../../../common/widget.dart';
 import '../../../common/widgets/appbar/blank_app_bar.dart';
@@ -43,7 +45,7 @@ class CreationCardConfirmationPage extends StatelessWidget {
             ),
             ClosesButton(
                 event: () {
-                  const RouteSettings(name: '/home');
+                  Get.offAllNamed(Routes.HOME);
                 },
                 widget: const Text(''))
           ],

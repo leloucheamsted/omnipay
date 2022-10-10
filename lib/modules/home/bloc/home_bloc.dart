@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:omnipay/modules/home/presentation/pages/ui/push_notification.dart';
+
+import '../../../routes/app_pages.dart';
 
 enum TypeAction { reload, transfer }
 
@@ -77,9 +78,9 @@ class HomeBloc with ChangeNotifier {
     if (_isValidPhoneNumber == true) {
       Get.back();
       if (_typeAction == TypeAction.reload.name) {
-        Get.toNamed("/recharge/loading/");
+        Get.toNamed(Routes.RECHARGELOADING);
       } else {
-        Get.toNamed("/transfer/loading/");
+        Get.toNamed(Routes.TRANSFERLOADING);
       }
     }
     notifyListeners();
@@ -100,10 +101,11 @@ class HomeBloc with ChangeNotifier {
 
   changeStatus(context) {
     _isLoading = !_isLoading;
+    // ignore: unused_local_variable
     Timer timer1;
     timer1 = Timer(const Duration(milliseconds: 2000), () {
       _isLoading = !_isLoading;
-      Get.offAllNamed('/home');
+      Get.offAllNamed(Routes.HOME);
       ScaffoldMessenger.of(context).showSnackBar(pushReloadSucces);
     });
     notifyListeners();

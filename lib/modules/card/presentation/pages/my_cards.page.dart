@@ -5,6 +5,7 @@ import 'package:omnipay/modules/card/presentation/pages/ui/action_button_card.da
 import 'package:omnipay/modules/card/presentation/pages/ui/card_details.dart';
 import 'package:omnipay/modules/common/widget.dart';
 
+import '../../../../routes/app_pages.dart';
 import '../../../common/constants/constants.dart';
 import 'ui/credit_card.dart';
 
@@ -22,7 +23,7 @@ class MyCardsPage extends StatelessWidget {
         flexibleSpace: AppBarRightButton(
           title: 'My cards',
           rightEvent: () {
-            Get.toNamed('/new/card/');
+            Get.toNamed(Routes.NEWCARD);
           },
           rigthWidget: _rightWidget(),
           // backEvent: () {},

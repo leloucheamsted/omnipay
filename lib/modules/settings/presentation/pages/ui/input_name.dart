@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widgets/textfield/text_field_container.dart';
-import 'package:omnipay/modules/users/presentation/auth/bloc/auth_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../common/widget.dart';

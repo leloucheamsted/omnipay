@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widgets/button/icontinue_button.dart';
-import 'package:omnipay/modules/users/presentation/auth/bloc/auth_bloc.dart';
-import 'package:provider/provider.dart';
 
 class SaveButton extends StatefulWidget {
   final VoidCallback event;
