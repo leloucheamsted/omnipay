@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "904985234751",
+    "project_id": "omnipay-f305e",
+    "storage_bucket": "omnipay-f305e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904985234751:android:850d3b01ce921ae0e7178a",
+        "android_client_info": {
+          "package_name": "com.example.omnipay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904985234751-c1i4rlvtb56a1u33nptklp46l0cpbeg1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwcFVEyoJI65vmPGyR8Mzc2I0wL585SEE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904985234751-c1i4rlvtb56a1u33nptklp46l0cpbeg1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
