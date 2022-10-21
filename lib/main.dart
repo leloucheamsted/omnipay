@@ -11,10 +11,12 @@ import 'package:provider/provider.dart';
 import 'modules/common/constants/constants.dart';
 import 'modules/navigation/bloc/nav_bloc.dart';
 import './modules/users/users_module.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // InitialBinding().dependencies();
+  await Firebase.initializeApp();
   await GetStorage.init();
   runApp(const MyApp());
 }

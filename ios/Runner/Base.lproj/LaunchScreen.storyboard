@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="YRO-k0-Ey4">
-                                <rect key="frame" x="57" y="372" width="276" height="100"/>
+                                <rect key="frame" x="76.666666666666686" y="390.66666666666669" width="237" height="62.666666666666686"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.396078431372549" green="0.31764705882352939" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -36,6 +36,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchImage" width="276" height="100"/>
+        <image name="LaunchImage" width="237" height="62.666667938232422"/>
     </resources>
 </document>

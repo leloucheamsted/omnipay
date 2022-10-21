@@ -53,7 +53,7 @@ class _OtpPageState extends State<OtpPage> {
             ),
             ContinuButton(
                 event: () {
-                  context.read<AuthBloc>().otpCodeVerification();
+                  context.read<AuthBloc>().otpVerification();
                 },
                 widget: const Text('data')),
             const SizedBox(

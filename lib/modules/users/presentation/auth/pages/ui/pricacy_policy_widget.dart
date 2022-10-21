@@ -1,11 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:omnipay/modules/common/constants/constants.dart';
-import 'package:omnipay/modules/common/widget.dart';
-import 'package:omnipay/modules/users/presentation/auth/bloc/auth_bloc.dart';
+import 'package:provider/provider.dart';
 
-AuthBloc bloc = AuthBloc();
+import '../../../../../common/constants/constants.dart';
+import '../../../../../common/widget.dart';
+import '../../bloc/auth_bloc.dart';
 
 class PrivacyPolicyWidget extends StatelessWidget {
   const PrivacyPolicyWidget({super.key});
@@ -75,7 +75,9 @@ class PrivacyPolicyWidget extends StatelessWidget {
                     ),
                     WidthButton(
                       event: () {
-                        _goOtpPage(context);
+                        Navigator.pop(context);
+                        context.read<AuthBloc>().verifyPhoneNumber();
+                        //   _verifyPhoneNumber(context);
                       },
                       width: (MediaQuery.of(context).size.width - 37) / 2,
                       content: 'Accept',
@@ -92,9 +94,9 @@ class PrivacyPolicyWidget extends StatelessWidget {
     );
   }
 
-  void _goOtpPage(context) {
-    Navigator.pop(context);
-    bloc.goOtpPage();
-    //Get.toNamed('/otp');
-  }
+  // void _verifyPhoneNumber(context) {
+  //   Navigator.pop(context);
+  // context.read<AuthBloc>().verifyPhoneNumber();
+  //   //Get.toNamed('/otp');
+  // }
 }

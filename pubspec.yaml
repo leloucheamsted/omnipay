@@ -45,6 +45,8 @@ dependencies:
   # flutter_modular: ^5.0.3
   rxdart: ^0.27.5
   get_storage: ^2.0.3
+  firebase_core: ^1.24.0
+  firebase_auth: ^3.11.2
 
 dev_dependencies:
   flutter_test:

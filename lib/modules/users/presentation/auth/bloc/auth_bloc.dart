@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:omnipay/modules/navigation/presentation/nav_bar.page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../../../routes/app_pages.dart';
 
@@ -10,10 +11,23 @@ class AuthBloc with ChangeNotifier {
   // validate loading
   late bool _isLoading;
   bool get isLoading => _isLoading;
-
   // phone number control
   late String _phoneNumberText;
   String get phoneNumberText => _phoneNumberText;
+
+  // verification ID
+  late String _verificationID;
+  String get verificationID => _verificationID;
+  set setVerificationID(String value) {
+    _verificationID = value;
+  }
+
+  // contrie code
+  late String _contryCode;
+  String get contryCode => _contryCode;
+  set setContryCode(String value) {
+    _contryCode = value;
+  }
 
   // valid phone number bool
   late bool _isValidNumber;
@@ -53,7 +67,9 @@ class AuthBloc with ChangeNotifier {
   }
 
   AuthBloc() {
+    _contryCode = "+237";
     _isLoading = false;
+    _verificationID = "";
     _phoneNumberText = "";
     _isValideFirstName = true;
     _isValidLastName = true;
@@ -75,18 +91,6 @@ class AuthBloc with ChangeNotifier {
     } else {
       log('succes: valid phone number $phoneNumberText');
       _isValidNumber = true;
-    }
-    notifyListeners();
-  }
-
-  otpCodeVerification() {
-    if (otpCode != "000000") {
-      _isValidOtp = false;
-      log("error: invalid code $otpCode");
-    } else {
-      log('success: valid otp code $otpCode');
-      _isValidOtp = true;
-      goUserCreatePage();
     }
     notifyListeners();
   }
@@ -136,5 +140,78 @@ class AuthBloc with ChangeNotifier {
 
   activateNotification() {
     Get.offAll(() => const NavBarPage());
+  }
+
+  otpCodeVerification() {
+    if (otpCode != "000000") {
+      _isValidOtp = false;
+      log("error: invalid code $otpCode");
+    } else {
+      log('success: valid otp code $otpCode');
+      _isValidOtp = true;
+      goUserCreatePage();
+    }
+    notifyListeners();
+  }
+
+  void signInWithPhoneAuthCredential(
+      PhoneAuthCredential phoneAuthCredential) async {
+    _isLoading = true;
+    notifyListeners();
+    try {
+      final authCredential =
+          await FirebaseAuth.instance.signInWithCredential(phoneAuthCredential);
+      _isLoading = false;
+      notifyListeners();
+
+      if (authCredential.user != null) {
+        _isValidOtp = true;
+        log("Reponse => credential: ${authCredential.user}");
+        final user = FirebaseAuth.instance.currentUser;
+        final String idToken = await user!.getIdToken(true);
+        log("Reponse => token : $idToken");
+        Get.toNamed(Routes.USERCREATE);
+      }
+    } on FirebaseAuthException catch (e) {
+      _isValidOtp = false;
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  // verification firebase number
+  verifyPhoneNumber() async {
+    _isLoading = true;
+    notifyListeners();
+    await FirebaseAuth.instance.verifyPhoneNumber(
+      phoneNumber: _contryCode + _phoneNumberText,
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        _isLoading = true;
+        notifyListeners();
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        _isLoading = false;
+        log("erro:$e");
+        notifyListeners();
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        _isLoading = false;
+        notifyListeners();
+
+        _verificationID = verificationId;
+        log("info: phoeNumber : ${_contryCode + _phoneNumberText}");
+        log("info: verificationID:$_verificationID");
+        log("info: go to OTP page");
+        Get.toNamed(Routes.OTP);
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
+    );
+  }
+
+  otpVerification() {
+    PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(
+        verificationId: _verificationID, smsCode: _otpCode);
+
+    signInWithPhoneAuthCredential(phoneAuthCredential);
   }
 }
