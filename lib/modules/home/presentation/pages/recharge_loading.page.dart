@@ -4,7 +4,7 @@ import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widget.dart';
 import 'package:omnipay/modules/common/widgets/appbar/blank_app_bar.dart';
 import 'package:omnipay/modules/common/widgets/button/dial_button.dart';
-import 'package:omnipay/modules/home/bloc/home_bloc.dart';
+import 'package:omnipay/modules/home/presentation/bloc/home_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../routes/app_pages.dart';

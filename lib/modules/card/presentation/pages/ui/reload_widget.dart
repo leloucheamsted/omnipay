@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:omnipay/modules/card/bloc/cards_bloc.dart';
+import 'package:omnipay/modules/card/presentation/bloc/cards_bloc.dart';
 import 'package:omnipay/modules/card/presentation/pages/ui/push_notification.dart';
 import 'package:omnipay/modules/common/widget.dart';
 import 'package:omnipay/modules/common/widgets/textfield/text_field_container.dart';

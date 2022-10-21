@@ -6,7 +6,7 @@ import 'package:omnipay/modules/common/widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../common/constants/constants.dart';
-import '../../../bloc/cards_bloc.dart';
+import '../../bloc/cards_bloc.dart';
 
 class CardCreation extends StatelessWidget {
   const CardCreation({

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
-import 'package:omnipay/modules/settings/bloc/settings_bloc.dart';
+import 'package:omnipay/modules/settings/presentation/bloc/settings_bloc.dart';
 import 'package:omnipay/modules/settings/presentation/pages/ui/button/save_button.dart';
 import 'package:omnipay/modules/settings/presentation/pages/ui/input_name.dart';
 import 'package:provider/provider.dart';

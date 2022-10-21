@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:omnipay/modules/home/bloc/home_bloc.dart';
+import 'package:omnipay/modules/home/presentation/bloc/home_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../common/constants/constants.dart';

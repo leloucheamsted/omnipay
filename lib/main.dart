@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
-import 'package:omnipay/modules/card/bloc/cards_bloc.dart';
-import 'package:omnipay/modules/home/bloc/home_bloc.dart';
-import 'package:omnipay/modules/settings/bloc/settings_bloc.dart';
+import 'package:omnipay/modules/card/presentation/bloc/cards_bloc.dart';
+import 'package:omnipay/modules/home/presentation/bloc/home_bloc.dart';
+import 'package:omnipay/modules/settings/presentation/bloc/settings_bloc.dart';
 import 'package:omnipay/modules/users/presentation/auth/bloc/auth_bloc.dart';
 import 'package:omnipay/routes/app_pages.dart';
 import 'package:provider/provider.dart';
 import 'modules/common/constants/constants.dart';
-import 'modules/navigation/bloc/nav_bloc.dart';
+import 'modules/navigation/presentation/bloc/nav_bloc.dart';
 import './modules/users/users_module.dart';
 import 'package:firebase_core/firebase_core.dart';
 

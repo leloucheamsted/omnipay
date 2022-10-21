@@ -6,7 +6,7 @@ import 'package:omnipay/modules/common/constants/font_size_contants.dart';
 import 'package:omnipay/modules/common/constants/icons_constants.dart';
 import 'package:omnipay/modules/common/constants/palette_color.dart';
 import 'package:omnipay/modules/home/presentation/pages/home.page.dart';
-import 'package:omnipay/modules/navigation/bloc/nav_bloc.dart';
+import 'package:omnipay/modules/navigation/presentation/bloc/nav_bloc.dart';
 import 'package:omnipay/modules/settings/presentation/pages/settings.page.dart';
 import 'package:omnipay/modules/transactions/presentation/pages/transactions.page.dart';
 import 'package:provider/provider.dart';

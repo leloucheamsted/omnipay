@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
-import 'package:omnipay/modules/settings/bloc/settings_list.dart';
+import 'package:omnipay/modules/settings/presentation/bloc/settings_list.dart';
 import 'package:omnipay/modules/settings/presentation/pages/ui/logout.dart';
 
 import '../../../../routes/app_pages.dart';

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:omnipay/modules/card/presentation/pages/ui/push_notification.dart';
 
-import '../../../routes/app_pages.dart';
+import '../../../../routes/app_pages.dart';
 
 class CardsBloc with ChangeNotifier {
   // lock and unlock card details informations

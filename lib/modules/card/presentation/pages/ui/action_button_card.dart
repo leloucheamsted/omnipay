@@ -4,7 +4,7 @@ import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widgets/button/icon_custom_button.dart';
 import 'package:provider/provider.dart';
 
-import '../../../bloc/cards_bloc.dart';
+import '../../bloc/cards_bloc.dart';
 
 class ActionButtonCard extends StatelessWidget {
   const ActionButtonCard({super.key});

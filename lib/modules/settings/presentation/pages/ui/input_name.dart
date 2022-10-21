@@ -4,7 +4,7 @@ import 'package:omnipay/modules/common/widgets/textfield/text_field_container.da
 import 'package:provider/provider.dart';
 
 import '../../../../common/widget.dart';
-import '../../../bloc/settings_bloc.dart';
+import '../../bloc/settings_bloc.dart';
 
 TextEditingController firstNameController = TextEditingController();
 TextEditingController lastNamController = TextEditingController();

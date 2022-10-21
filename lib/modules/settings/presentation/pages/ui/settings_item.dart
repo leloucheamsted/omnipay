@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:omnipay/modules/common/widget.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:omnipay/modules/settings/bloc/settings_bloc.dart';
+import 'package:omnipay/modules/settings/presentation/bloc/settings_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../common/constants/constants.dart';
-import '../../../bloc/settings_list.dart';
+import '../../bloc/settings_list.dart';
 
 class SettingsItem extends StatelessWidget {
   final SettingsEntity settingsEntity;

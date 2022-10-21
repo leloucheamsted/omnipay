@@ -1,7 +1,7 @@
 // ignore_for_file: unrelated_type_equality_checks
 
 import 'package:flutter/material.dart';
-import 'package:omnipay/modules/card/bloc/cards_bloc.dart';
+import 'package:omnipay/modules/card/presentation/bloc/cards_bloc.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widgets/button/icontinue_button.dart';
 import 'package:provider/provider.dart';
