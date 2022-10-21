@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:omnipay/modules/card/bloc/cards_bloc.dart';
 import 'package:omnipay/modules/home/bloc/home_bloc.dart';
 import 'package:omnipay/modules/settings/bloc/settings_bloc.dart';
@@ -17,7 +17,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // InitialBinding().dependencies();
   await Firebase.initializeApp();
-  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -25,7 +24,8 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    late final getStorage = GetStorage();
+    late final FlutterSecureStorage secureStorage = FlutterSecureStorage();
+    // late final getStorage = GetStorage();
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent, // status bar color
         systemNavigationBarDividerColor: PaletteColor.white,
@@ -53,7 +53,10 @@ class MyApp extends StatelessWidget {
         theme: ThemeConstants.theme,
         home: const PhoneInputPage(),
         getPages: AppPages.routes,
-        initialRoute: getStorage.read('id') == null ? Routes.AUTH : Routes.HOME,
+        // ignore: unrelated_type_equality_checks
+        initialRoute: secureStorage.read(key: 'token') == "paymate"
+            ? Routes.AUTH
+            : Routes.HOME,
       ),
     );
   }

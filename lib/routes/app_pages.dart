@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 import '../modules/card/cards_module.dart';
 import '../modules/home/home_module.dart';
