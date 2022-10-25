@@ -15,7 +15,7 @@ class CreationCardEntity {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': userID,
+      'userId': userID,
       'firstName': firstName,
       'lastName': lastName,
       'phone': phone,
@@ -33,7 +33,7 @@ class CreationCardEntity {
 
   @override
   String toString() {
-    return 'GroupEntity(id: $userID, firstName: $firstName, lastName: $lastName, phone: $phone)';
+    return 'CreationCardEntity(id: $userID, firstName: $firstName, lastName: $lastName, phone: $phone)';
   }
 
   @override
