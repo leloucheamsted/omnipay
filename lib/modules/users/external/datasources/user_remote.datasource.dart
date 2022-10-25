@@ -21,12 +21,11 @@ class UserRemoteDataSource implements IUserDataSource {
   }
 
   @override
-  Future<AppUser?> getUser({String? userId}) async {
+  Future<AppUser?> getUserById({String? userId}) async {
     final res = await _client.get(
-      _getUrl(userId == null ? "GetUserById" : "GetUser"),
-      params: userId == null ? null : {"id": userId},
+      _getUrl("GetUser/$userId"),
     );
-    return res == null ? null : AppUser.fromMap(res);
+    return res == null ? null : AppUser.fromMap(res["user"]);
   }
 
   @override
