@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -24,6 +26,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
+    String? token;
     late final FlutterSecureStorage secureStorage = FlutterSecureStorage();
     // late final getStorage = GetStorage();
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -49,14 +52,16 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: GetMaterialApp(
+        onInit: (() async {
+          token = await secureStorage.read(key: 'tokenKey');
+          log("TokenValue=> $token");
+        }),
         debugShowCheckedModeBanner: false,
         theme: ThemeConstants.theme,
         home: const PhoneInputPage(),
         getPages: AppPages.routes,
-        // ignore: unrelated_type_equality_checks
-        initialRoute: secureStorage.read(key: 'token') == "paymate"
-            ? Routes.AUTH
-            : Routes.HOME,
+        // ignore: unrelated_type_equality_checks, unnecessary_null_comparison
+        initialRoute: token == null ? Routes.AUTH : Routes.HOME,
       ),
     );
   }

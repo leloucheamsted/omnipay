@@ -9,6 +9,7 @@ class DioLogInterceptor implements Interceptor {
     log("DioLog. $msg");
   }
 
+  ///错误数据采集
   @override
   Future onError(DioError err, ErrorInterceptorHandler handler) async {
     _log(err.toString());
@@ -18,6 +19,7 @@ class DioLogInterceptor implements Interceptor {
     return handler.next(err);
   }
 
+  ///请求体数据采集
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     // return handler.next(options);
@@ -28,6 +30,7 @@ class DioLogInterceptor implements Interceptor {
     return handler.next(options);
   }
 
+  ///响应体数据采集
   @override
   Future onResponse(
       Response response, ResponseInterceptorHandler handler) async {

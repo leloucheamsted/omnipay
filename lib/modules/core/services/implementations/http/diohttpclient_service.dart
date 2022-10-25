@@ -18,13 +18,18 @@ enum RestAction {
 }
 
 class DioHttpClientService implements IHttpClientService {
-  final Dio dio;
+  static const baseUrl = "http://192.168.43.62:8080";
+  Dio dio = Dio(BaseOptions(
+    baseUrl: baseUrl,
+    headers: {
+      "content-type": "application/json",
+    },
+  ));
 
   final Function(Map)? customValidateResponse;
   final Function? customErrorParser;
   Map<String, dynamic>? _customHeaders;
   DioHttpClientService({
-    required this.dio,
     this.customValidateResponse,
     this.customErrorParser,
   }) {

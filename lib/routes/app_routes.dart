@@ -24,7 +24,7 @@ abstract class _Paths {
   static const SPLASH = '/splash';
   static const AUTH = '/auth';
   static const OTP = '/otp';
-  static const USERCREATE = '/yser/create';
+  static const USERCREATE = '/user/create';
   static const NOTIF = '/notif';
   static const EDITPROFILE = '/edit/profile';
   static const NEWCARD = '/new/card';

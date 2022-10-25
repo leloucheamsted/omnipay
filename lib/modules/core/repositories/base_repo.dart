@@ -15,7 +15,7 @@ abstract class BaseRepo {
     try {
       final result = await action();
       // final resultStr = JsonHelper.prettyPrintJson("$result");
-      // log("RepoResponse=> $result");
+      log("RepoResponse=> $result");
 
       return right(result);
     } catch (e, s) {

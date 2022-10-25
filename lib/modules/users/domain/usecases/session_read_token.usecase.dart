@@ -1,12 +1,15 @@
 import 'package:dartz/dartz.dart';
+import 'package:omnipay/modules/users/infra/repositories/session_repo.dart';
 
 import '../../../core/error/failure.dart';
 import '../../../core/usecases/iusecase.dart';
 import '../repositories/i_session.repo.dart';
 
 class SessionReadTokenUsecase implements IUseCase<String?, void> {
-  final ISessionRepo _repo;
-  SessionReadTokenUsecase(this._repo);
+  late SessionRepo _repo;
+  SessionReadTokenUsecase() {
+    _repo = SessionRepo();
+  }
 
   @override
   Future<Either<IFailure, String?>> call(void params) {

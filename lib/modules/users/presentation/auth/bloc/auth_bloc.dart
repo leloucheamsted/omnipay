@@ -1,15 +1,20 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:omnipay/modules/navigation/presentation/nav_bar.page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:omnipay/modules/users/domain/entity/app_user.dart';
+import 'package:omnipay/modules/users/domain/usecases/session_save_user.usecase.dart';
 
 import '../../../../../routes/app_pages.dart';
 
 class AuthBloc with ChangeNotifier {
   // validate loading
+  late SessionSaveUserUsecase _saveUserUsecase;
   late bool _isLoading;
+
   bool get isLoading => _isLoading;
   // phone number control
   late String _phoneNumberText;
@@ -118,7 +123,7 @@ class AuthBloc with ChangeNotifier {
       _isValideFirstName = true;
 
       log("success : valid input  form");
-      goNotifpage();
+      //goNotifpage();
     }
     notifyListeners();
   }
@@ -135,6 +140,7 @@ class AuthBloc with ChangeNotifier {
   }
 
   goNotifpage() {
+    showLoadingAnimation();
     Get.toNamed(Routes.NOTIF);
   }
 
@@ -170,7 +176,15 @@ class AuthBloc with ChangeNotifier {
         final user = FirebaseAuth.instance.currentUser;
         final String idToken = await user!.getIdToken(true);
         log("Reponse => token : $idToken");
-        Get.toNamed(Routes.USERCREATE);
+        var params = {
+          "phone": _phoneNumberText,
+          "token": idToken,
+          "id": user.uid,
+        };
+        if (kDebugMode) {
+          print(params);
+        }
+        Get.toNamed(Routes.USERCREATE, parameters: params);
       }
     } on FirebaseAuthException catch (e) {
       _isValidOtp = false;
@@ -183,35 +197,44 @@ class AuthBloc with ChangeNotifier {
   verifyPhoneNumber() async {
     _isLoading = true;
     notifyListeners();
-    await FirebaseAuth.instance.verifyPhoneNumber(
-      phoneNumber: _contryCode + _phoneNumberText,
-      verificationCompleted: (PhoneAuthCredential credential) async {
-        _isLoading = true;
-        notifyListeners();
-      },
-      verificationFailed: (FirebaseAuthException e) {
-        _isLoading = false;
-        log("erro:$e");
-        notifyListeners();
-      },
-      codeSent: (String verificationId, int? resendToken) {
-        _isLoading = false;
-        notifyListeners();
+    Get.toNamed(Routes.OTP);
+    // await FirebaseAuth.instance.verifyPhoneNumber(
+    //   phoneNumber: _contryCode + _phoneNumberText,
+    //   verificationCompleted: (PhoneAuthCredential credential) async {
+    //     _isLoading = true;
+    //     notifyListeners();
+    //   },
+    //   verificationFailed: (FirebaseAuthException e) {
+    //     _isLoading = false;
+    //     log("erro:$e");
+    //     notifyListeners();
+    //   },
+    //   codeSent: (String verificationId, int? resendToken) {
+    //     _isLoading = false;
+    //     notifyListeners();
 
-        _verificationID = verificationId;
-        log("info: phoeNumber : ${_contryCode + _phoneNumberText}");
-        log("info: verificationID:$_verificationID");
-        log("info: go to OTP page");
-        Get.toNamed(Routes.OTP);
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {},
-    );
+    //     _verificationID = verificationId;
+    //     log("info: phoeNumber : ${_contryCode + _phoneNumberText}");
+    //     log("info: verificationID:$_verificationID");
+    //     log("info: go to OTP page");
+    //     Get.toNamed(Routes.OTP);
+    //   },
+    //   codeAutoRetrievalTimeout: (String verificationId) {},
+    // );
   }
 
   otpVerification() {
-    PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(
-        verificationId: _verificationID, smsCode: _otpCode);
-
-    signInWithPhoneAuthCredential(phoneAuthCredential);
+    // PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(
+    //     verificationId: _verificationID, smsCode: _otpCode);
+    var params = {
+      "phone": '682421795',
+      "token": 'tokenKey',
+      "id": '123485',
+    };
+    if (kDebugMode) {
+      print(params);
+    }
+    Get.toNamed(Routes.USERCREATE, parameters: params);
+    //signInWithPhoneAuthCredential(phoneAuthCredential);
   }
 }
