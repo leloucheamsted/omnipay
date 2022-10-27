@@ -9,6 +9,7 @@ class LatestTransactionFetchListUseCase
     implements IUseCase<List<TransactionEntity>, String> {
   late TransactionsRepository repo;
 
+  // ignore: non_constant_identifier_names
   TransactionFetchListUseCase() {
     repo = TransactionsRepository();
   }

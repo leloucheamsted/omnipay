@@ -1,17 +1,16 @@
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:omnipay/modules/navigation/presentation/nav_bar.page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:omnipay/modules/users/domain/entity/app_user.dart';
 import 'package:omnipay/modules/users/domain/usecases/session_save_user.usecase.dart';
 
 import '../../../../../routes/app_pages.dart';
 
 class AuthBloc with ChangeNotifier {
   // validate loading
+  // ignore: unused_field
   late SessionSaveUserUsecase _saveUserUsecase;
   late bool _isLoading;
 
@@ -186,7 +185,7 @@ class AuthBloc with ChangeNotifier {
         }
         Get.toNamed(Routes.USERCREATE, parameters: params);
       }
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       _isValidOtp = false;
       _isLoading = false;
       notifyListeners();

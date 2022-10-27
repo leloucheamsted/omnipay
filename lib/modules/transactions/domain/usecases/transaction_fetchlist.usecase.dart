@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:omnipay/modules/transactions/domain/entity/transaction.entity.dart';
-import 'package:omnipay/modules/transactions/domain/repositories/i_transaction.repo.dart';
 import 'package:omnipay/modules/transactions/infra/repositories/transactions.repository.dart';
 
 import '../../../core/error/failure.dart';

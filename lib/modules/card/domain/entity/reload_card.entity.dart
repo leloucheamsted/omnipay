@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class ReloadCardEntity {
   final String cardID;
   final String amount;
@@ -33,6 +31,7 @@ class ReloadCardEntity {
   }
 
   @override
+  // ignore: hash_and_equals
   int get hashCode {
     return userID.hashCode ^ cardID.hashCode ^ amount.hashCode;
   }

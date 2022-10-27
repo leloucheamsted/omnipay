@@ -3,7 +3,6 @@ import 'package:omnipay/modules/users/infra/repositories/session_repo.dart';
 
 import '../../../core/error/failure.dart';
 import '../../../core/usecases/iusecase.dart';
-import '../repositories/i_session.repo.dart';
 
 class SessionReadTokenUsecase implements IUseCase<String?, void> {
   late SessionRepo _repo;

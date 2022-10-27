@@ -27,7 +27,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String? token;
-    late final FlutterSecureStorage secureStorage = FlutterSecureStorage();
+    // ignore: prefer_const_constructors
+    late FlutterSecureStorage secureStorage = FlutterSecureStorage();
     // late final getStorage = GetStorage();
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent, // status bar color

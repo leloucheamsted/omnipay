@@ -78,6 +78,7 @@ class TransactionEntity {
   }
 
   @override
+  // ignore: hash_and_equals
   int get hashCode {
     return amount.hashCode ^
         dateConfirmed.hashCode ^

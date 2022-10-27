@@ -25,6 +25,7 @@ class RemoteWalletDataSource implements IWalletDataSource {
 
   @override
   Future<ReloadWalletEntity> reloadWallet({RequestWalletEntity? params}) async {
+    // ignore: unused_local_variable
     FormData formData = FormData();
     formData = FormData.fromMap({
       "userId": params!.userId,

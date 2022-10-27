@@ -1,17 +1,10 @@
 import 'dart:developer';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widget.dart';
-import 'package:omnipay/modules/core/services/implementations/http/diohttpclient_service.dart';
 import 'package:omnipay/modules/users/domain/entity/app_user.dart';
-import 'package:omnipay/modules/users/domain/repositories/iuser_repo.dart';
-import 'package:omnipay/modules/users/domain/usecases/session_save_token.usecase.dart';
-import 'package:omnipay/modules/users/external/datasources/local_session.datasource.dart';
-import 'package:omnipay/modules/users/infra/repositories/user.repo.dart';
-import 'package:omnipay/modules/users/infra/services/user_service.dart';
 
 import 'package:omnipay/modules/users/presentation/auth/bloc/auth_bloc.dart';
 import 'package:omnipay/modules/users/presentation/auth/pages/ui/input_name.dart'
@@ -20,7 +13,6 @@ import 'package:omnipay/modules/users/presentation/auth/pages/ui/pricacy_policy_
 import 'package:provider/provider.dart';
 
 import '../../../domain/usecases/session_save_user.usecase.dart';
-import '../../../external/datasources/user_remote.datasource.dart';
 import 'ui/input_name.dart';
 
 class PersonnalInformationPage extends StatelessWidget {
@@ -96,6 +88,7 @@ class PersonnalInformationPage extends StatelessWidget {
     );
   }
 
+  // ignore: unused_element
   void _createUser(context) {}
 
   void privacyPolicy(context) {

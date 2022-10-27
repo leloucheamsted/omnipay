@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class AppUser {
   final String id;
   final String firstName;
@@ -41,6 +39,7 @@ class AppUser {
   }
 
   @override
+  // ignore: hash_and_equals
   int get hashCode {
     return id.hashCode ^
         firstName.hashCode ^

@@ -8,7 +8,6 @@ import 'package:omnipay/modules/transactions/domain/entity/transaction.entity.da
 import '../../../core/repositories/base_repo.dart';
 
 class WalletRepository extends BaseRepo implements IReloadWalletRepo {
-  @override
   late RemoteWalletDataSource remoteDataSource;
   WalletRepository() {
     remoteDataSource = RemoteWalletDataSource();

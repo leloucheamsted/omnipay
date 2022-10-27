@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 abstract class AppExceptionBase implements Exception {
   final String? message;
   // final String type;
@@ -6,7 +8,9 @@ abstract class AppExceptionBase implements Exception {
 
   // AppExceptionBase({@required this.message, @required this.type});
   AppExceptionBase({this.message}) {
-    print("$runtimeType # msg:$message");
+    if (kDebugMode) {
+      print("$runtimeType # msg:$message");
+    }
   }
 
   @override

@@ -4,7 +4,6 @@ import 'package:omnipay/modules/users/external/datasources/local_session.datasou
 import '../../../core/error/failure.dart';
 import '../../../core/repositories/base_repo.dart';
 import '../../domain/repositories/i_session.repo.dart';
-import '../datasources/i_session.datasource.dart';
 
 class SessionRepo extends BaseRepo implements ISessionRepo {
   late LocalSessionDataSource localDataSource;

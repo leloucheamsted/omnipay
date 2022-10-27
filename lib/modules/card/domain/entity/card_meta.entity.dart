@@ -23,6 +23,7 @@ class CardMetaEntity {
   }
 
   @override
+  // ignore: hash_and_equals
   int get hashCode {
     return userID.hashCode;
   }

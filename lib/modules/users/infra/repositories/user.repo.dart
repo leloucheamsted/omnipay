@@ -3,7 +3,6 @@ import '../../../core/repositories/base_repo.dart';
 import '../../domain/entity/app_user.dart';
 import '../../domain/repositories/iuser_repo.dart';
 import '../../external/datasources/user_remote.datasource.dart';
-import '../datasources/i_user.datasource.dart';
 
 class UserRepo extends BaseRepo implements IUserRepo {
   late UserRemoteDataSource remoteDataSource;

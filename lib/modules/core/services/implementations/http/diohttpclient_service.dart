@@ -88,8 +88,6 @@ class DioHttpClientService implements IHttpClientService {
     Options? options,
     dynamic data,
     Map<String, dynamic>? params,
-    // bool isUpload = false,
-    StreamController<int>? uploadProgressCtrl,
   }) async {
     dynamic responseJson;
 
@@ -125,6 +123,7 @@ class DioHttpClientService implements IHttpClientService {
           // rethrow;
         }
       }
+      // ignore: unused_catch_stack
     } catch (e, s) {
       rethrow;
       // throw UnHandledHttpException(e, s);
@@ -153,6 +152,7 @@ class DioHttpClientService implements IHttpClientService {
     }
   }
 
+  // ignore: unused_element
   void _validateReponse(Map dataMap) {
     if (customValidateResponse != null) {
       customValidateResponse!.call(dataMap);
@@ -176,6 +176,7 @@ class DioHttpClientService implements IHttpClientService {
     // dio.options.headers = headers;
   }
 
+  // ignore: unused_element
   Map<String, String> _mergedHeaders(Map<String, String>? headers) =>
       {...?_customHeaders, ...?headers};
 
@@ -265,7 +266,5 @@ class DioHttpClientService implements IHttpClientService {
   }
 
   @override
-  void dispose() {
-    // TODO: implement dispose
-  }
+  void dispose() {}
 }

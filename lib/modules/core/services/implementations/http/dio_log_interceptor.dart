@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'dart:convert';
 import 'dart:developer';
 
@@ -5,6 +7,7 @@ import 'package:dio/dio.dart';
 
 class DioLogInterceptor implements Interceptor {
   void _log(String msg) {
+    // ignore: todo
     //TODO: replace with core log custom function
     log("DioLog. $msg");
   }
@@ -43,17 +46,16 @@ class DioLogInterceptor implements Interceptor {
     String cmd = "curl";
 
     String header = options.headers
-            .map((key, value) {
-              if (key == "content-type" &&
-                  value.toString().indexOf("multipart/form-data") != -1) {
-                value = "multipart/form-data;";
-              }
-              return MapEntry(key, "-H '$key: $value'");
-            })
-            .values
-            .join(" ") ??
-        "";
-    String url = "${options.baseUrl ?? ""}${options.path}";
+        .map((key, value) {
+          if (key == "content-type" &&
+              value.toString().contains("multipart/form-data")) {
+            value = "multipart/form-data;";
+          }
+          return MapEntry(key, "-H '$key: $value'");
+        })
+        .values
+        .join(" ");
+    String url = "${options.baseUrl}${options.path}";
     if (options.queryParameters.isNotEmpty) {
       String query = options.queryParameters
           .map((key, value) {
@@ -62,35 +64,33 @@ class DioLogInterceptor implements Interceptor {
           .values
           .join("&");
 
-      url += (url.indexOf("?") != -1) ? query : "?$query";
+      url += (url.contains("?")) ? query : "?$query";
     }
     if (options.method == "GET") {
       cmd += " $header '$url'";
     } else {
       Map<String, dynamic> files = {};
       String postData = "-d ''";
-      if (options != null) {
-        if (options.cancelToken is FormData) {
-          FormData fdata = options.data as FormData;
-          fdata.files.forEach((element) {
-            MultipartFile file = element.value;
-            files[element.key] = "@${file.filename}";
-          });
-          fdata.fields.forEach((element) {
-            files[element.key] = element.value;
-          });
-          if (files.length > 0) {
-            postData = files
-                .map((key, value) => MapEntry(key, "-F '$key=$value'"))
-                .values
-                .join(" ");
-          }
-        } else if (options.data is Map<String, dynamic>) {
-          files.addAll(options.data);
+      if (options.cancelToken is FormData) {
+        FormData fdata = options.data as FormData;
+        for (var element in fdata.files) {
+          MultipartFile file = element.value;
+          files[element.key] = "@${file.filename}";
+        }
+        for (var element in fdata.fields) {
+          files[element.key] = element.value;
+        }
+        if (files.isNotEmpty) {
+          postData = files
+              .map((key, value) => MapEntry(key, "-F '$key=$value'"))
+              .values
+              .join(" ");
+        }
+      } else if (options.data is Map<String, dynamic>) {
+        files.addAll(options.data);
 
-          if (files.length > 0) {
-            postData = "-d '${json.encode(files).toString()}'";
-          }
+        if (files.isNotEmpty) {
+          postData = "-d '${json.encode(files).toString()}'";
         }
       }
 

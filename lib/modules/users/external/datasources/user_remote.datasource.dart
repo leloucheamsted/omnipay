@@ -1,15 +1,12 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:omnipay/modules/core/services/implementations/http/diohttpclient_service.dart';
 import 'package:omnipay/modules/users/domain/entity/app_user.dart';
-import 'package:omnipay/modules/users/domain/services/iuser_service.dart';
 import 'package:omnipay/modules/users/infra/services/user_service.dart';
-import 'package:http/http.dart' as http;
 import '../../infra/datasources/i_user.datasource.dart';
 
 class UserRemoteDataSource implements IUserDataSource {
   late DioHttpClientService _client;
+  // ignore: unused_field
   late UserService _userService;
   UserRemoteDataSource() {
     _client = DioHttpClientService();

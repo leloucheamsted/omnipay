@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class CreationCardEntity {
   final String userID;
   final String firstName;
@@ -37,6 +35,7 @@ class CreationCardEntity {
   }
 
   @override
+  // ignore: hash_and_equals
   int get hashCode {
     return userID.hashCode ^
         firstName.hashCode ^

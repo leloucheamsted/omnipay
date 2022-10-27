@@ -94,6 +94,7 @@ class CardDetailsEntity {
   }
 
   @override
+  // ignore: hash_and_equals
   int get hashCode {
     return balance.hashCode ^
         billingAddress.hashCode ^

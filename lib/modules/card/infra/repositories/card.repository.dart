@@ -9,6 +9,7 @@ import '../../../core/repositories/base_repo.dart';
 
 class CardRepository extends BaseRepo implements ICardRepo {
   late RemoteCardDataSource remoteDataSource;
+  // ignore: non_constant_identifier_names
   WalletRepository() {
     remoteDataSource = RemoteCardDataSource();
   }
