@@ -18,11 +18,13 @@ class UserRemoteDataSource implements IUserDataSource {
   }
 
   @override
-  Future<AppUser?> getUserById({String? userId}) async {
+  Future<AppUser> getUserById({String? userId}) async {
     final res = await _client.get(
       _getUrl("GetUser/$userId"),
     );
-    return res == null ? null : AppUser.fromMap(res["user"]);
+
+    // l.og("Response=>$res");
+    return AppUser.fromMap(res["user"]);
   }
 
   @override
@@ -37,7 +39,7 @@ class UserRemoteDataSource implements IUserDataSource {
   }
 
   @override
-  Future<void> saveUser({AppUser? user, String? token}) async {
+  Future<void> saveUser({AppUser? user}) async {
     var map = <String, dynamic>{};
     map['username'] = 'username';
     map['password'] = 'password';
@@ -46,8 +48,8 @@ class UserRemoteDataSource implements IUserDataSource {
     // return ;
     FormData formData = FormData();
     formData = FormData.fromMap({
-      "uiud": "WERFTT",
-      "firstName": user!.firstName,
+      "uiud": user!.id,
+      "firstName": user.firstName,
       "lastName": user.lastName,
       "amount": user.amount,
       "phone": user.phone

@@ -15,7 +15,7 @@ class RemoteTransactionsDataSource implements ITransactionDataSource {
 
   @override
   Future<List<TransactionEntity>> fetchAllTransactions({String? userId}) async {
-    final response = await _client.get(_getUrl("/AllTransactions/:$userId"));
+    final response = await _client.get(_getUrl("/AllTransactions/$userId"));
     return List<TransactionEntity>.from(
         response.map((x) => TransactionEntity.fromMap(x)));
   }
@@ -23,7 +23,7 @@ class RemoteTransactionsDataSource implements ITransactionDataSource {
   @override
   Future<List<TransactionEntity>> fetchLatestTransactions(
       {String? userId}) async {
-    final response = await _client.get(_getUrl("/LalestTransactions/:$userId"));
+    final response = await _client.get(_getUrl("/LatestTransactions/$userId"));
     return List<TransactionEntity>.from(
         response.map((x) => TransactionEntity.fromMap(x)));
   }

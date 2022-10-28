@@ -54,15 +54,16 @@ class MyApp extends StatelessWidget {
       ],
       child: GetMaterialApp(
         onInit: (() async {
-          token = await secureStorage.read(key: 'tokenKey');
-          log("TokenValue=> $token");
+          token = await secureStorage.read(key: 'idKey');
+
+          log("TokenValue=> $token!");
         }),
         debugShowCheckedModeBanner: false,
         theme: ThemeConstants.theme,
         home: const PhoneInputPage(),
         getPages: AppPages.routes,
         // ignore: unrelated_type_equality_checks, unnecessary_null_comparison
-        initialRoute: token == null ? Routes.AUTH : Routes.HOME,
+        initialRoute: token != null ? Routes.AUTH : Routes.HOME,
       ),
     );
   }

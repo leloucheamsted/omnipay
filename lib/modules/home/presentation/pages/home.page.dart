@@ -1,12 +1,58 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:omnipay/modules/home/presentation/bloc/home_bloc.dart';
 import 'package:omnipay/modules/home/presentation/pages/ui/balance_controller.dart';
+import 'package:omnipay/modules/transactions/domain/entity/transaction.entity.dart';
+import 'package:omnipay/modules/transactions/presentation/bloc/fetch_latest_transaction.bloc.dart';
+import 'package:provider/provider.dart';
 
 import '../../../common/constants/constants.dart';
 import '../../../common/widget.dart';
+import '../../../core/presentation/action_state.dart';
+import '../../../core/presentation/streambuilder_all.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
+  late final FetchLatestTransactionBloc bloc = FetchLatestTransactionBloc();
+
+  //late final HomeBloc bloc = HomeBloc();
+  String? username = "";
+
+  @override
+  void initState() {
+    getUsername();
+    // bloc.getActualUser();
+    // context.read<HomeBloc>().getActualUser();
+    super.initState();
+  }
+
+  // @override
+  // void didUpdateWidget(covariant HomePage oldWidget) {
+  //   super.didUpdateWidget(oldWidget);
+  // }
+
+  Future<String> getUsername() async {
+    // setState(()  {
+    username = await _secureStorage.read(key: 'firstNameKey');
+    log("Hi $username");
+    setState(() {
+      username;
+    });
+    return username!;
+    // });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +64,8 @@ class HomePage extends StatelessWidget {
           toolbarHeight: LayoutConstants.appBarSize,
           flexibleSpace: AppBarRightButton(
             //color: PaletteColor.white,
-            title: 'Welcome, Abdoul', rigthWidget: _rightChild(),
+            title: 'Welcome,  $username',
+            rigthWidget: _rightChild(),
             rightEvent: () {},
           )),
       body: Padding(
@@ -32,7 +79,8 @@ class HomePage extends StatelessWidget {
             const SizedBox(
               height: LayoutConstants.spaceS,
             ),
-            const BalanceController(),
+            BalanceController(
+                balance: context.watch<HomeBloc>().user.amount.toString()),
             const SizedBox(
               height: LayoutConstants.spaceL,
             ),
@@ -46,7 +94,7 @@ class HomePage extends StatelessWidget {
                         content: 'See All', color: PaletteColor.primary)),
               ],
             ),
-            Expanded(child: _listTransaction())
+            Expanded(child: _buildBody(context))
             //  Recenttansaction(),
           ],
         ),
@@ -54,10 +102,22 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _listTransaction() {
+  Widget _buildBody(BuildContext context) {
+    return StreamBuilder_all<ActionState<List<TransactionEntity>>>(
+      stream: bloc.outStream,
+      onSuccess: (_, data) {
+        if (data == null || data.data == null || data.data!.isEmpty) {
+          return const Text('No data found...');
+        }
+        return _listTransaction(data.data!);
+      },
+    );
+  }
+
+  Widget _listTransaction(items) {
     return SingleChildScrollView(
       child: Column(
-        children: List.generate(6, (index) {
+        children: List.generate(items.lenght, (index) {
           return const PaymentMethodItem(
             icon: ImagesConstants.mtnImage,
             transactionType: 'Balance reload',
@@ -102,5 +162,11 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    // bloc.dispose();
+    super.dispose();
   }
 }

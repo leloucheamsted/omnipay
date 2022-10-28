@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:omnipay/modules/common/constants/constants.dart';
 import 'package:omnipay/modules/common/widget.dart';
-import 'package:omnipay/modules/users/domain/entity/app_user.dart';
 
 import 'package:omnipay/modules/users/presentation/auth/bloc/auth_bloc.dart';
 import 'package:omnipay/modules/users/presentation/auth/pages/ui/input_name.dart'
@@ -12,7 +11,6 @@ import 'package:omnipay/modules/users/presentation/auth/pages/ui/input_name.dart
 import 'package:omnipay/modules/users/presentation/auth/pages/ui/pricacy_policy_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../../domain/usecases/session_save_user.usecase.dart';
 import 'ui/input_name.dart';
 
 class PersonnalInformationPage extends StatelessWidget {
@@ -61,19 +59,11 @@ class PersonnalInformationPage extends StatelessWidget {
                         context.read<AuthBloc>().setLastName =
                             lastNamController.text;
 
-                        context.read<AuthBloc>().nameVerification();
-                        if (context.read<AuthBloc>().isValidFirstName == true &&
-                            context.read<AuthBloc>().isValidLastName == true) {
-                          var user = AppUser(
-                              id: Get.parameters["id"]!,
-                              firstName: firstNameController.text,
-                              lastName: lastNamController.text,
-                              amount: 0,
-                              phone: Get.parameters["phone"]!);
-                          SessionSaveUserUsecase saveUserUsecase =
-                              SessionSaveUserUsecase();
-                          saveUserUsecase.call(user);
-                        }
+                        context.read<AuthBloc>().nameVerification({
+                          "id": Get.parameters["id"],
+                          "phone": Get.parameters["phone"],
+                          "token": Get.parameters["token"]
+                        });
                       },
                       widget: const Text('data')),
                 ],

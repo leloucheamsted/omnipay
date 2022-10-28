@@ -42,6 +42,7 @@ class LocalSessionDataSource implements ISessionDataSource {
     _secureStorage.write(key: 'lastNameKey', value: user.lastName);
     _secureStorage.write(key: phoneKey, value: user.phone);
     _secureStorage.write(key: 'amountKey', value: user.amount.toString());
+    log("SaveUserSession=> $user");
     return _secureStorage.write(key: 'idKey', value: user.id);
   }
 

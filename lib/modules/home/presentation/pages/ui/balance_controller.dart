@@ -10,8 +10,10 @@ import '../../../../common/widget.dart';
 import './reload_widget.dart';
 
 class BalanceController extends StatelessWidget {
+  final String balance;
   const BalanceController({
     super.key,
+    required this.balance,
   });
   @override
   Widget build(BuildContext context) {
@@ -69,7 +71,7 @@ class BalanceController extends StatelessWidget {
   // Balance Text
 
   Widget _balanceText() {
-    return const Title2(content: '15,000', color: PaletteColor.dark);
+    return Title2(content: balance, color: PaletteColor.dark);
   }
 
   Widget _reloadButton(double width) {

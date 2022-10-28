@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:omnipay/modules/users/infra/repositories/session_repo.dart';
 
@@ -12,6 +14,7 @@ class SessionSaveTokenUsecase implements IUseCase<void, String> {
 
   @override
   Future<Either<IFailure, void>> call(String token) {
+    log("Token=> $token");
     return _repo.saveToken(token);
   }
 }

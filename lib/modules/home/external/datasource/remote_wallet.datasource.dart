@@ -33,7 +33,7 @@ class RemoteWalletDataSource implements IWalletDataSource {
       "amount": params.amount,
       "email": params.email,
     });
-    final response = await _client.post(_getUrl(""));
+    final response = await _client.post(_getUrl("/Reload"), postData: formData);
     return ReloadWalletEntity.fromMap(response["data"]);
   }
 }

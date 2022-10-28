@@ -16,7 +16,7 @@ class UserRepo extends BaseRepo implements IUserRepo {
   }
 
   @override
-  Future<Either<IFailure, AppUser?>> getUser({String? userId}) {
+  Future<Either<IFailure, AppUser>> getUser({String? userId}) {
     return runWithEither(() => remoteDataSource.getUserById(userId: userId));
   }
 }

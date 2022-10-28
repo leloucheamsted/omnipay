@@ -7,7 +7,7 @@ import '../entity/transaction.entity.dart';
 
 class LatestTransactionFetchListUseCase
     implements IUseCase<List<TransactionEntity>, String> {
-  late TransactionsRepository repo;
+  late TransactionsRepository repo = TransactionsRepository();
 
   // ignore: non_constant_identifier_names
   TransactionFetchListUseCase() {

@@ -4,14 +4,21 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:omnipay/modules/navigation/presentation/nav_bar.page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:omnipay/modules/users/domain/usecases/session_save_token.usecase.dart';
+import 'package:omnipay/modules/users/domain/usecases/remote_save_user.usecase.dart';
 import 'package:omnipay/modules/users/domain/usecases/session_save_user.usecase.dart';
 
 import '../../../../../routes/app_pages.dart';
+import '../../../domain/entity/app_user.dart';
 
 class AuthBloc with ChangeNotifier {
   // validate loading
   // ignore: unused_field
-  late SessionSaveUserUsecase _saveUserUsecase;
+  late final RemoteSaveUserUsecase saveUserUsecase = RemoteSaveUserUsecase();
+  late final SessionSaveTokenUsecase saveTokenUsecase =
+      SessionSaveTokenUsecase();
+  late final SessionSaveUserUsecase _sessionSaveUserUsecase =
+      SessionSaveUserUsecase();
   late bool _isLoading;
 
   bool get isLoading => _isLoading;
@@ -104,7 +111,7 @@ class AuthBloc with ChangeNotifier {
     notifyListeners();
   }
 
-  nameVerification() {
+  nameVerification(dynamic params) {
     if (_firstName.isEmpty && _lastName.isEmpty) {
       _isValideFirstName = false;
       _isValidLastName = false;
@@ -122,6 +129,20 @@ class AuthBloc with ChangeNotifier {
       _isValideFirstName = true;
 
       log("success : valid input  form");
+      var user = AppUser(
+          id: params["id"]!,
+          firstName: _firstName,
+          lastName: _lastName,
+          amount: 0,
+          phone: params["phone"]!);
+      saveTokenUsecase.call(params["token"]);
+      _sessionSaveUserUsecase.call(user).whenComplete(() => goNotifpage());
+      // saveUserUsecase.call(user).whenComplete(
+      //       () => saveTokenUsecase
+      //           .call(params["token"])
+      //           .whenComplete(() => goNotifpage()),
+      //  );
+
       //goNotifpage();
     }
     notifyListeners();
@@ -140,7 +161,7 @@ class AuthBloc with ChangeNotifier {
 
   goNotifpage() {
     showLoadingAnimation();
-    Get.toNamed(Routes.NOTIF);
+    Get.offAllNamed(Routes.NOTIF);
   }
 
   activateNotification() {
@@ -223,12 +244,13 @@ class AuthBloc with ChangeNotifier {
   }
 
   otpVerification() {
-    // PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(
-    //     verificationId: _verificationID, smsCode: _otpCode);
+    // ignore: unused_local_variable
+    PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(
+        verificationId: _verificationID, smsCode: _otpCode);
     var params = {
-      "phone": '682421795',
-      "token": 'tokenKey',
-      "id": '123485',
+      "phone": _phoneNumberText,
+      "token": '12jdnfiriubccfnfvnitobuti',
+      "id": '06xxz8NVFKcMBImNnzFN5c5oXqE3',
     };
     if (kDebugMode) {
       print(params);
